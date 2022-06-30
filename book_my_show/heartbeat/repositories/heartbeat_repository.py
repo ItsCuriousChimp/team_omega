@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.utils import timezone
-from ..models.dto.heartbeat_dto import HeartBeatDto
+from ..dto.heartbeat_dto import HeartBeatDto
 
 
 class HeartBeatRepository:
