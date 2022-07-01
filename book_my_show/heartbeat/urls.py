@@ -1,6 +1,6 @@
-from django.urls import URLPattern, path
-from . import views
+from django.urls import path
+from .controllers import heartbeat_controller
 
 urlpatterns = [
-    path('', views.heartBeat_api_response)
+    path('', heartbeat_controller.HealthCheck_service.healthcheck_response)
 ]
