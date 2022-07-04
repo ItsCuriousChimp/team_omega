@@ -1,5 +1,5 @@
 from django.utils import timezone
-from ..dtos.heartBeat_dto import HeartbeatDto
+from ..dtos.heartbeat_dto import HeartbeatDto
 
 
 class HeartbeatRepository:
