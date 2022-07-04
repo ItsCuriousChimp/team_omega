@@ -1,7 +1,8 @@
 from django.contrib import admin
-from django.urls import path, include
-from .controllers.healthcheck_controller import HealthCheckController
+from django.urls import path
+from .views.healthcheck_view import HealthCheckView
+
 
 urlpatterns = [
-    path("v1/healthcheck", HealthCheckController.health_check),
+    path("", HealthCheckView.get_healthcheck),
 ]

@@ -1,8 +1,8 @@
-django===4.0.5
-djangorestframework
-pyyaml
-requests
-django-cors-headers
-pre-commit
-black
-pylint
+django==4.0.5
+djangorestframework==3.13.1
+pyyaml===6.0
+requests==2.28.1
+django-cors-headers==3.13.0
+pre-commit==2.19.0
+black==22.6.0
+pylint==2.14.4
