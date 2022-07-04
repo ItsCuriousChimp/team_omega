@@ -1,5 +1,5 @@
 from datetime import datetime
-from ..dto.healthcheck_dto import HealthCheckDto
+from ..dtos.healthcheck_dto import HealthCheckDto
 
 
 class HealthCheckRepository:
