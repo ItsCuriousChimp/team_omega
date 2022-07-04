@@ -1,4 +1,4 @@
-from ..models.heartbeat_model import HeartbeatDto
+from ..dtos.heartbeat_dto import HeartbeatDto
 
 
 class HeartbeatRepository:
