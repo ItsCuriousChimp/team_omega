@@ -2,7 +2,7 @@ from datetime import datetime
 # Creating models here.
 
 
-class Health_Check_Dto():
+class HeartbeatDto():
     last_beat: datetime
 
     def __init__(self, last_beat: datetime):

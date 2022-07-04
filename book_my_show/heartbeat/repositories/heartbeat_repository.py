@@ -1,8 +1,8 @@
 from django.utils import timezone
-from ..dto.heartBeat_dto import Health_Check_Dto
+from ..dtos.heartBeat_dto import HeartbeatDto
 
 
-class HeartBeat_Repository:
-    def heartBeat_repository_reponse(self) -> Health_Check_Dto:
-        healthCheck = Health_Check_Dto(timezone.now())
-        return healthCheck
+class HeartbeatRepository:
+    def fetch_heart_beat(self) -> HeartbeatDto:
+        heartbeat_response = HeartbeatDto(timezone.now())
+        return heartbeat_response
