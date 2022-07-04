@@ -1,7 +1,7 @@
-from ..models.heartbeat_model import HeartBeatDto
+from ..models.heartbeat_model import HeartbeatDto
 
 
-class HeartBeatRepository:
-    def heartbeat(self) -> HeartBeatDto:
-        heart_beat_dto = HeartBeatDto().__str__()
-        return heart_beat_dto
+class HeartbeatRepository:
+    def get_heartbeat(self) -> HeartbeatDto:
+        heartbeat_repository = HeartbeatDto().__str__()
+        return heartbeat_repository

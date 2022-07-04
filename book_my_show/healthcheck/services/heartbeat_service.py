@@ -1,7 +1,7 @@
-from ..repositories.heartbeat_repo import HeartBeatRepository
+from ..repositories.heartbeat_repo import HeartbeatRepository
 
 
-class HeartBeatService:
-    def get_heartbeat_dto(self):
-        heart_beat_dto = HeartBeatRepository()
-        return heart_beat_dto.heartbeat()
+class HeartbeatService:
+    def get_heartbeat(self):
+        heartbeat_repository = HeartbeatRepository()
+        return heartbeat_repository.get_heartbeat()
