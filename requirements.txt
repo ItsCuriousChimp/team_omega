@@ -6,3 +6,5 @@ django-cors-headers==3.13.0
 pylint==2.14.4
 pre-commit==2.19.0
 black==22.6.0
+django-configurations==2.3.2
+python-dotenv==0.20.0
