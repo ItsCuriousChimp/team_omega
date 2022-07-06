@@ -1,5 +1,5 @@
-from ..dtos.heartbeat_dto import HeartbeatDto
-from ..repositories.heartbeat_repository import HeartbeatRepository
+from book_my_show.heartbeat.dtos.heartbeat_dto import HeartbeatDto
+from book_my_show.heartbeat.repositories.heartbeat_repository import HeartbeatRepository
 
 
 class HeartbeatService:

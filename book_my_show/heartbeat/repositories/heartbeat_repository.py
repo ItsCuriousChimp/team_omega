@@ -1,5 +1,5 @@
 from datetime import datetime
-from ..dtos.heartbeat_dto import HeartbeatDto
+from book_my_show.heartbeat.dtos.heartbeat_dto import HeartbeatDto
 
 
 class HeartbeatRepository:

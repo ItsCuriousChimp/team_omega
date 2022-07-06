@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from ..services.heartbeat_service import HeartbeatService
+from book_my_show.heartbeat.services.heartbeat_service import HeartbeatService
 
 
 class HeartbeatView:
