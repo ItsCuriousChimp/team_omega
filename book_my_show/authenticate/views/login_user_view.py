@@ -15,8 +15,6 @@ class LoginUser(APIView):
         user = authenticate(username=username, password=password)
 
         if user is not None:
-            return JsonResponse(
-                {"username": username, "message": "user successfully created"}
-            )
+            return JsonResponse({"username": username, "message": "login successful"})
 
         return JsonResponse({"message": "wrong details"})
