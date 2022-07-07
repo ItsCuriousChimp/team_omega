@@ -160,7 +160,16 @@ disable=raw-checker-failed,
         trailing-whitespace,
         unnecessary-dunder-call,
         relative-beyond-top-level,
-        import-outside-toplevel
+        import-outside-toplevel,
+        invalid-name,
+        import-error,
+        wrong-import-order,
+        unused-argument,
+        ungrouped-imports,
+        bare-except,
+        invalid-str-returned,
+        too-many-arguments,
+        unused-import
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option

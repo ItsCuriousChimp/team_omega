@@ -1,12 +1,12 @@
-from configurations import Configuration
 from pathlib import Path
+from configurations import Configuration
+from book_my_show.common.enums.app_environment import AppEnvironment
+
 
 class Settings(Configuration):
 
-
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
     BASE_DIR = Path(__file__).resolve().parent.parent
-
 
     # Quick-start development settings - unsuitable for production
     # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -17,8 +17,7 @@ class Settings(Configuration):
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = False
 
-    ALLOWED_HOSTS = ['*']
-
+    ALLOWED_HOSTS = ["*"]
 
     # Application definition
     INSTALLED_APPS = [
@@ -29,6 +28,7 @@ class Settings(Configuration):
         "django.contrib.messages",
         "django.contrib.staticfiles",
         "book_my_show.heartbeat",
+        "book_my_show.authenticate",
     ]
 
     MIDDLEWARE = [
@@ -39,6 +39,7 @@ class Settings(Configuration):
         "django.contrib.auth.middleware.AuthenticationMiddleware",
         "django.contrib.messages.middleware.MessageMiddleware",
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
+        "book_my_show.middlewares.exception_handler_middleware.ExceptionHandlerMiddleware",
     ]
 
     ROOT_URLCONF = "book_my_show.urls"
@@ -61,7 +62,6 @@ class Settings(Configuration):
 
     WSGI_APPLICATION = "book_my_show.wsgi.application"
 
-
     # Database
     # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -71,7 +71,6 @@ class Settings(Configuration):
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
-
 
     # Password validation
     # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -91,7 +90,6 @@ class Settings(Configuration):
         },
     ]
 
-
     # Internationalization
     # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -103,7 +101,6 @@ class Settings(Configuration):
 
     USE_TZ = True
 
-
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
@@ -113,3 +110,5 @@ class Settings(Configuration):
     # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
     DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+    APP_ENVIRONMENT: AppEnvironment = None
