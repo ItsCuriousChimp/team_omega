@@ -89,6 +89,8 @@ class Settings(Configuration):
             "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
         },
     ]
+    
+    # AUTH_USER_MODEL ="authenticate.UserModel"
 
     # Internationalization
     # https://docs.djangoproject.com/en/4.0/topics/i18n/
