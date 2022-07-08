@@ -169,7 +169,8 @@ disable=raw-checker-failed,
         bare-except,
         invalid-str-returned,
         too-many-arguments,
-        unused-import
+        unused-import,
+        broad-except,
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option

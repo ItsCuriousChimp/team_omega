@@ -2,6 +2,8 @@ from pathlib import Path
 from configurations import Configuration
 from book_my_show.common.enums.app_environment import AppEnvironment
 
+# from book_my_show.authenticate.models import user_model
+
 
 class Settings(Configuration):
 
@@ -114,3 +116,4 @@ class Settings(Configuration):
     DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
     APP_ENVIRONMENT: AppEnvironment = None
+
