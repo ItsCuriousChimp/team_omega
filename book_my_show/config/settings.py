@@ -31,6 +31,7 @@ class Settings(Configuration):
         "django.contrib.staticfiles",
         "book_my_show.heartbeat",
         "book_my_show.authenticate",
+        'rest_framework.authtoken'
     ]
 
     MIDDLEWARE = [
@@ -45,6 +46,9 @@ class Settings(Configuration):
     ]
 
     ROOT_URLCONF = "book_my_show.urls"
+    ACCOUNT_AUTHENTICATION_METHOD = 'email'
+    ACCOUNT_EMAIL_REQUIRED = True
+    ACCOUNT_USERNAME_REQUIRED = False
 
     TEMPLATES = [
         {
