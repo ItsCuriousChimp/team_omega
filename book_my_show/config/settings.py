@@ -29,9 +29,10 @@ class Settings(Configuration):
         "django.contrib.sessions",
         "django.contrib.messages",
         "django.contrib.staticfiles",
+        "rest_framework",
         "book_my_show.heartbeat",
         "book_my_show.authenticate",
-        'rest_framework.authtoken'
+        "rest_framework.authtoken",
     ]
 
     MIDDLEWARE = [
@@ -46,7 +47,7 @@ class Settings(Configuration):
     ]
 
     ROOT_URLCONF = "book_my_show.urls"
-    ACCOUNT_AUTHENTICATION_METHOD = 'email'
+    ACCOUNT_AUTHENTICATION_METHOD = "email"
     ACCOUNT_EMAIL_REQUIRED = True
     ACCOUNT_USERNAME_REQUIRED = False
 
@@ -95,7 +96,7 @@ class Settings(Configuration):
             "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
         },
     ]
-    
+
     # AUTH_USER_MODEL ="authenticate.UserModel"
 
     # Internationalization
@@ -120,4 +121,4 @@ class Settings(Configuration):
     DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
     APP_ENVIRONMENT: AppEnvironment = None
-
+    AUTH_USER_MODEL = "authenticate.UserModel"

@@ -54,11 +54,14 @@ class UserModel(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = [
-        "email",
-    ]
 
     objects = MyAccountManager()
 
     def __str__(self) -> str:
         return self.email
+
+    def has_module_perms(self, app_label):
+        return True
+
+    def has_perm(self, perm, obj=None):
+        return self.is_admin
