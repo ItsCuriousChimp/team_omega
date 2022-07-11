@@ -32,6 +32,7 @@ class Settings(Configuration):
         "rest_framework",
         "book_my_show.heartbeat",
         "book_my_show.authenticate",
+        "book_my_show.coreapis",
         "rest_framework.authtoken",
     ]
 
