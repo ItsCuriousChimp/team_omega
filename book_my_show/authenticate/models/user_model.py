@@ -43,7 +43,6 @@ class UserModel(AbstractBaseUser):
     email = models.EmailField(
         verbose_name="email", max_length=60, unique=True, primary_key=True
     )
-    # username = models.CharField(max_length=30, unique=True)
     last_login = models.DateTimeField(verbose_name="last login", auto_now=True)
     first_name = models.CharField(max_length=50, null=True)
     last_name = models.CharField(max_length=50, null=True)
@@ -62,8 +61,8 @@ class UserModel(AbstractBaseUser):
     def __str__(self) -> str:
         return self.email
 
-    def has_module_perms(self, app_label):
+    def has_module_perms(self, app_label) -> bool:
         return True
 
-    def has_perm(self, perm, obj=None):
+    def has_perm(self, perm, obj=None) -> bool:
         return self.is_admin

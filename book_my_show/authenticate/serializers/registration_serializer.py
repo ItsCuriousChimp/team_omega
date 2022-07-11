@@ -7,7 +7,7 @@ class RegistraionSerializer(serializers.ModelSerializer):
         model = UserModel
         fields = "__all__"
 
-    def save(self):
+    def save(self) -> UserModel:
         user_model = UserModel(
             email=self.validated_data["email"],
             first_name=self.validated_data["first_name"],
