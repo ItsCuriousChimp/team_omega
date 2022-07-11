@@ -9,5 +9,4 @@ class UserModelRepository:
         user_model_dto = UserModelDto(
             email=model_details.email, password=model_details.password
         )
-        print(user_model_dto)
         return user_model_dto
