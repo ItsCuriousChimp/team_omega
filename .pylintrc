@@ -162,11 +162,15 @@ disable=raw-checker-failed,
         relative-beyond-top-level,
         import-outside-toplevel,
         invalid-name,
-        unused-import,
         import-error,
-        no-name-in-module,
-        syntax-error,
-        wrong-import-order
+        wrong-import-order,
+        unused-argument,
+        ungrouped-imports,
+        bare-except,
+        invalid-str-returned,
+        too-many-arguments,
+        unused-import,
+        broad-except,
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option

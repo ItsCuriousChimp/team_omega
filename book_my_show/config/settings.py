@@ -1,5 +1,8 @@
 from pathlib import Path
 from configurations import Configuration
+from book_my_show.common.enums.app_environment import AppEnvironment
+
+# from book_my_show.authenticate.models import user_model
 
 
 class Settings(Configuration):
@@ -26,9 +29,9 @@ class Settings(Configuration):
         "django.contrib.sessions",
         "django.contrib.messages",
         "django.contrib.staticfiles",
+        "rest_framework",
         "book_my_show.heartbeat",
         "book_my_show.authenticate",
-        "book_my_show.coreapis",
         "rest_framework.authtoken",
     ]
 
@@ -40,9 +43,13 @@ class Settings(Configuration):
         "django.contrib.auth.middleware.AuthenticationMiddleware",
         "django.contrib.messages.middleware.MessageMiddleware",
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
+        "book_my_show.middlewares.exception_handler_middleware.ExceptionHandlerMiddleware",
     ]
 
     ROOT_URLCONF = "book_my_show.urls"
+    ACCOUNT_AUTHENTICATION_METHOD = "email"
+    ACCOUNT_EMAIL_REQUIRED = True
+    ACCOUNT_USERNAME_REQUIRED = False
 
     TEMPLATES = [
         {
@@ -90,6 +97,8 @@ class Settings(Configuration):
         },
     ]
 
+    # AUTH_USER_MODEL ="authenticate.UserModel"
+
     # Internationalization
     # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -110,3 +119,6 @@ class Settings(Configuration):
     # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
     DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+    APP_ENVIRONMENT: AppEnvironment = None
+    AUTH_USER_MODEL = "authenticate.UserModel"
