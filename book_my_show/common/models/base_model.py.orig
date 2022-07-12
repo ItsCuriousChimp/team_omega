@@ -1,7 +1,10 @@
 from django.db import models
-from safedelete import SOFT_DELETE_CASCADE
 from safedelete.models import SafeDeleteModel
+from safedelete.models import SOFT_DELETE_CASCADE
+<<<<<<< HEAD
+=======
 
+>>>>>>> 79a08cef3551dcfeaf0b47f9a3a34b88af35b36e
 
 class BaseModel(SafeDeleteModel, models.Model):
     _safedelete_policy = SOFT_DELETE_CASCADE

@@ -12,7 +12,7 @@ class ExceptionHandlerMiddleware:
         return response
 
     def process_exception(self, request, exception):
-
+        print("exception")
         if settings.APP_ENVIRONMENT != AppEnvironment.Local:
             return JsonResponse({"Result": "Failed", "Output": "Error occured"})
         return HttpResponse(exception)

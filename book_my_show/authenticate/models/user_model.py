@@ -1,46 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser
+from ..services.account_manager_service import MyAccountManagerService
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from django.conf import settings
-
-
-class MyAccountManager(BaseUserManager):
-    def create_user(
-        self,
-        email,
-        password=None,
-        first_name=None,
-        last_name=None,
-        address=None,
-        phone_no=None,
-    ):
-        if not email:
-            raise ValueError("Users must have an email address")
-
-        user = self.model(
-            email=self.normalize_email(email),
-            first_name=first_name,
-            last_name=last_name,
-            address=address,
-            phone_no=phone_no,
-        )
-
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-    def create_superuser(self, email, password):
-        user = self.create_user(
-            email=self.normalize_email(email),
-            password=password,
-        )
-        user.is_admin = True
-        user.is_staff = True
-        user.is_superuser = True
-        user.save(using=self._db)
-        return user
 
 
 class UserModel(AbstractBaseUser):
@@ -60,7 +24,7 @@ class UserModel(AbstractBaseUser):
 
     USERNAME_FIELD = "email"
 
-    objects = MyAccountManager()
+    objects = MyAccountManagerService()
 
     def __str__(self) -> str:
         return self.email
