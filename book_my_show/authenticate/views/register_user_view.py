@@ -1,3 +1,4 @@
+import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from book_my_show.authenticate.services.user_service import UserService
@@ -13,8 +14,8 @@ class RegisterUserView(APIView):
         serializer = UserSerializer(data=request.data)
 
         if serializer.is_valid():
-            resp = register_user_service.create_user(serializer)
+            resp: json = register_user_service.create_user(serializer)
         else:
-            resp = serializer.errors
+            resp: json = serializer.error_messages
 
-        return Response({"Response": resp})
+        return Response(resp)
