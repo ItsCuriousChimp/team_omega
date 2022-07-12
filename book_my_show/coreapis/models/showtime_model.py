@@ -2,9 +2,10 @@ from django.db import models
 from book_my_show.coreapis.models.cinema_screen_model import CinemaScreen
 from book_my_show.coreapis.models.movie_model import Movie
 from book_my_show.common.models.base_model import BaseModel
+from softdelete.models import SoftDeleteObject
 
 
-class Showtime(BaseModel):
+class Showtime(BaseModel, SoftDeleteObject):
     start_time_at_utc = models.DateTimeField()
     end_time_at_utc = models.DateTimeField()
     movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE)

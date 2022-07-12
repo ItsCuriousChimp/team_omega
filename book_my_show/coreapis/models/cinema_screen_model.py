@@ -1,8 +1,10 @@
 from django.db import models
 from book_my_show.coreapis.models.cinema_model import Cinema
 from book_my_show.common.models.base_model import BaseModel
+from softdelete.models import SoftDeleteObject
 
-class CinemaScreen(BaseModel):
+
+class CinemaScreen(BaseModel, SoftDeleteObject):
     screen_no = models.IntegerField()
     cinema_id = models.ForeignKey(Cinema, on_delete=models.CASCADE)
 

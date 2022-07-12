@@ -1,8 +1,10 @@
 from django.db import models
 from book_my_show.coreapis.models.city_model import City
 from book_my_show.common.models.base_model import BaseModel
+from softdelete.models import SoftDeleteObject
 
-class Cinema(BaseModel):
+
+class Cinema(BaseModel, SoftDeleteObject):
     name = models.CharField(max_length=32)
     city_id = models.ForeignKey(City, on_delete=models.CASCADE)
 

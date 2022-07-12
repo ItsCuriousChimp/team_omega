@@ -8,3 +8,4 @@ pre-commit==2.19.0
 black==22.6.0
 django-configurations==2.3.2
 python-dotenv==0.20.0
+django-softdelete==0.9.4

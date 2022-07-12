@@ -2,7 +2,7 @@ import json
 from django.contrib.auth import authenticate
 
 
-class LoginUserService:
+class AuthenticationService:
     def verify_credentials(self, user_data) -> json:
         resp: str = "Login Successful"
 

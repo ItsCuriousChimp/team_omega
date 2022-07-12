@@ -2,7 +2,7 @@ from rest_framework import serializers
 from book_my_show.authenticate.models.user_model import UserModel
 
 
-class RegistraionSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
         fields = "__all__"
