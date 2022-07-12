@@ -3,11 +3,9 @@ from configurations import Configuration
 from book_my_show.common.enums.app_environment import AppEnvironment
 
 
-
 class Settings(Configuration):
 
     BASE_DIR = Path(__file__).resolve().parent.parent
-
 
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = "django-insecure-=g7p*++&z$tv*^6a@9^v1fm)4+-+xe5pjc&#yo6e3qpo1&36o4"
@@ -30,6 +28,7 @@ class Settings(Configuration):
         "book_my_show.authenticate",
         "book_my_show.coreapis",
         "rest_framework.authtoken",
+        "safedelete",
     ]
 
     MIDDLEWARE = [
@@ -66,14 +65,12 @@ class Settings(Configuration):
 
     WSGI_APPLICATION = "book_my_show.wsgi.application"
 
-
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
-
 
     AUTH_PASSWORD_VALIDATORS = [
         {
@@ -90,7 +87,6 @@ class Settings(Configuration):
         },
     ]
 
-
     LANGUAGE_CODE = "en-us"
 
     TIME_ZONE = "UTC"
@@ -98,7 +94,6 @@ class Settings(Configuration):
     USE_I18N = True
 
     USE_TZ = True
-
 
     STATIC_URL = "static/"
 
