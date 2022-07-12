@@ -28,7 +28,11 @@ class Settings(Configuration):
         "book_my_show.authenticate",
         "book_my_show.coreapis",
         "rest_framework.authtoken",
+<<<<<<< HEAD
+        "softdelete",
+=======
         "safedelete",
+>>>>>>> df5a53c27ccd1a785417b93b136cd161ab2f85c1
     ]
 
     MIDDLEWARE = [
@@ -50,6 +54,7 @@ class Settings(Configuration):
     TEMPLATES = [
         {
             "BACKEND": "django.template.backends.django.DjangoTemplates",
+            "DIRS": ["/path/to/my/templates"],
             "OPTIONS": {
                 "context_processors": [
                     "django.template.context_processors.debug",
@@ -57,6 +62,10 @@ class Settings(Configuration):
                     "django.contrib.auth.context_processors.auth",
                     "django.contrib.messages.context_processors.messages",
                 ],
+                "loaders": (
+                    "django.template.loaders.filesystem.Loader",
+                    "django.template.loaders.app_directories.Loader",
+                ),
             },
         },
     ]

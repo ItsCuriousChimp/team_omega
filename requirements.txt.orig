@@ -8,4 +8,8 @@ pre-commit==2.19.0
 black==22.6.0
 django-configurations==2.3.2
 python-dotenv==0.20.0
-django-safedelete==1.2.2
+<<<<<<< HEAD
+django-softdelete==0.9.4
+=======
+django-safedelet==1.2.2
+>>>>>>> df5a53c27ccd1a785417b93b136cd161ab2f85c1
