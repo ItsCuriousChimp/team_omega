@@ -16,6 +16,6 @@ class RegisterUserView(APIView):
         if serializer.is_valid():
             resp: json = register_user_service.create_user(serializer)
         else:
-            resp: json = serializer.error_messages
+            resp: json = serializer.errors
 
         return Response(resp)
