@@ -9,4 +9,4 @@ class RegisterUserView(APIView):
         register_user_service = UserService()
         resp = register_user_service.create_user(request.data)
 
-        return Response({"hi": "hi"})
+        return Response(resp)

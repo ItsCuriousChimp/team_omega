@@ -8,7 +8,7 @@ from book_my_show.authenticate.services.authentication_service import (
 class LoginUserView(APIView):
     def post(self, request) -> Response:
 
-        login_service = AuthenticationService()
-        response = login_service.verify_credentials(request.data)
+        auth_service = AuthenticationService()
+        response = auth_service.verify_credentials(request.data)
 
         return Response(response)
