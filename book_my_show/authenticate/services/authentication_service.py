@@ -6,15 +6,11 @@ class AuthenticationService:
     def verify_credentials(self, user_data) -> json:
         resp: str = "Login Successful"
 
-        try:
-            user = authenticate(
-                username=user_data["email"], password=user_data["password"]
-            )
+        user = authenticate(
+            username=user_data["email"], password=user_data["password"]
+        )
 
-            if user is None:
-                raise Exception("wrong credentials ")
-
-        except Exception as error_msg:
-            resp = error_msg
+        if user is None:
+            resp = "Login Failed"
 
         return {"message": str(resp)}

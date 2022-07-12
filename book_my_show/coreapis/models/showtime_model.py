@@ -13,24 +13,3 @@ class Showtime(BaseModel):
     def __str__(self) -> str:
         return str(str(self.movie_id) + " " + str(self.cinema_screen_id))
 
-    # def clean(self) -> None:
-
-    #     self.check_clash()
-
-    #     print("its running", self.cinema_screen_id)
-
-    # def check_clash(self):
-    #     queryset = self._meta.default_manager.filter(
-    #         cinema_screen_id=self.cinema_screen_id
-    #     )
-    #     print("start Time ", queryset[0].start_time_at_utc)
-    #     movies = queryset.filter(
-    #         (
-    #             start_time_at_utc < self.start_time_at_utc
-    #             and end_time_at_utc < self.end_time_at_utc
-    #         )
-    #         or start_time_at_utc > self.start_time_at_utc
-    #         and end_time_at_utc > self.end_time_at_utc
-    #     )
-    # print("First ", queryset)
-    # print("Second ", movies)
