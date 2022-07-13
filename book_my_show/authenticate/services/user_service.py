@@ -23,6 +23,6 @@ class UserService:
         resp["Mobile Number"] = phone_no if phone_no != None else ""
         resp["Full Name"] = full_name
         token = Token.objects.get(user=resp["email"]).key
-        data["token"] = token
+        resp["token"] = token
 
         return resp
