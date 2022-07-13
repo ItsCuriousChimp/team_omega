@@ -7,15 +7,12 @@ class Settings(Configuration):
 
     BASE_DIR = Path(__file__).resolve().parent.parent
 
-    # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = "django-insecure-=g7p*++&z$tv*^6a@9^v1fm)4+-+xe5pjc&#yo6e3qpo1&36o4"
 
-    # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = False
 
     ALLOWED_HOSTS = ["*"]
 
-    # Application definition
     INSTALLED_APPS = [
         "django.contrib.admin",
         "django.contrib.auth",
