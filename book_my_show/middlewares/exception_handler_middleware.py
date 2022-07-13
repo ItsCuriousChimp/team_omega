@@ -4,7 +4,7 @@ from django.conf import settings
 import logging
 
 logging.basicConfig(
-    filename="/team_omega/book_my_show/common/log/debug.log",
+    filename="../team_omega/book_my_show/common/log/debug.log",
     filemode="a",
     level=logging.ERROR,
 )
