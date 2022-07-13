@@ -1,6 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from book_my_show.common.enums.app_environment import AppEnvironment
 from django.conf import settings
+import logging
 
 
 class ExceptionHandlerMiddleware:
@@ -9,6 +10,7 @@ class ExceptionHandlerMiddleware:
 
     def __call__(self, request):
         response = self.get_response(request)
+        print(response)
         return response
 
     def process_exception(self, request, exception):
