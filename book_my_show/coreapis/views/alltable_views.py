@@ -8,7 +8,7 @@ from django.db import connection
 class AllTable(APIView):
     def get(self, request, *args, **kwargs):
         cursor = connection.cursor()
-        cursor.execute("Select * From coreapis_Cinema")
+        cursor.execute("Select * From coreapis_Cinema Where deleted IS NULL")
         cinemas = self.dictfetchall(cursor)
         cursor.execute("Select * From coreapis_Movie")
         movies = self.dictfetchall(cursor)
@@ -38,17 +38,3 @@ class AllTable(APIView):
         "Return all rows from a cursor as a dict"
         columns = [col[0] for col in cursor.description]
         return [dict(zip(columns, row)) for row in cursor.fetchall()]
-
-
-# SELECT TableA.*, TableB.*, TableC.*, TableD.*
-# FROM TableA
-#     JOIN TableB
-#         ON TableB.aID = TableA.aID
-#     JOIN TableC
-#         ON TableC.cID = TableB.cID
-#     JOIN TableD
-#         ON TableD.dID = TableA.dID
-# WHERE DATE(TableC.date)=date(now())
-
-#  "SELECT * FROM coreapis_Cinema as cinema WHERE cinema.city_id_id = %s AND cinema.deleted IS NULL",
-#             [pk],
