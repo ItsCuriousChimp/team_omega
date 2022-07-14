@@ -1,24 +1,14 @@
-from tkinter import E
 from django.http import JsonResponse
 from rest_framework.views import APIView
-from book_my_show.coreapis.models.city_model import City
-from book_my_show.coreapis.models.showtime_model import Showtime
+from book_my_show.coreapis.services.movie_service import MovieService
 
 class MovieList(APIView):
 
     def get(self, request,*args, **kwargs):
         movie_pk = self.kwargs["pk1"]
-        movie_in_city = Showtime.objects.filter(cinema_screen_id__cinema_id_id__city_id_id__id= int(movie_pk))
-        city = City.objects.all().filter(id = int(movie_pk))
-        
-        ls = []
-        
-        for i in movie_in_city:
-            ls.append(str(i.movie_id))
-        city_name = "NULL"
-        if city:
-            city_name = str(city[0])
-
+        movie_service = MovieService()
+        ls = movie_service.get_movies(movie_pk)
+        city_name = movie_service.get_city_name(movie_pk)
         return JsonResponse(
            { city_name: ls}
         )
