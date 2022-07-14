@@ -7,5 +7,5 @@ from book_my_show.coreapis.views.movie_view import MovieList
 urlpatterns = [
     path("alltables/", AllTable.as_view()),
     path("movies/<str:pk1>/", CinemaView.as_view()),
-    path("city/<str:pk1>/movies/", MovieList.as_view()),
+    path("city/<str:id>/movies/", MovieList.as_view()),
 ]
