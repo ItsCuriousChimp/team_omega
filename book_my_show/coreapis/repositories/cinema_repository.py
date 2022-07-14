@@ -5,7 +5,7 @@ class CinemaRepository:
     def get_cinemas(self, movie_pk: str) -> dict:
         cursor = connection.cursor()
         cursor.execute(
-            """Select show.start_time_at_utc,show.end_time_at_utc ,m.name as movie_name,c.name as cinema_name ,c.id as cinema_id,show.movie_id_id as movie_id
+            """Select show.id as showtime_id,show.start_time_at_utc,show.end_time_at_utc ,m.name as movie_name,c.name as cinema_name ,c.id as cinema_id,show.movie_id_id as movie_id
                             From coreapis_ShowTime as show 
                             INNER JOIN coreapis_Movie as m
                                 ON m.id == show.movie_id_id
