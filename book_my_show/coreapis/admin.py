@@ -8,6 +8,8 @@ from book_my_show.coreapis.models import (
     seat_model,
     showtime_model,
 )
+from django.contrib.auth.admin import UserAdmin
+
 
 admin.site.register(booking_model.Booking)
 admin.site.register(cinema_model.Cinema)
