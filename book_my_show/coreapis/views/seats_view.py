@@ -20,8 +20,6 @@ class SeatView(APIView):
         elif seat_type == "unavailable":
             seats = self.seat_service.get_unavailable_seats(showtime_pk)
         else:
-
-            seats = "invalid seat type"
-
+            
             seats = "Invalid seat type"
         return Response(seats)
