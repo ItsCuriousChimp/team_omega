@@ -12,4 +12,3 @@ class Showtime(BaseModel):
 
     def __str__(self) -> str:
         return str(str(self.movie_id) + " " + str(self.cinema_screen_id))
-
