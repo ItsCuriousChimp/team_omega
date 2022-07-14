@@ -1,8 +1,8 @@
 from django.urls import path
 
-from book_my_show.coreapis.views.seat_available_view import SeatAvailableView
+from book_my_show.coreapis.views.seats_view import SeatView
 
 
 urlpatterns = [
-    path("showtimes/<str:id>/seats/", SeatAvailableView.as_view()),
+    path("showtimes/<str:id>/", SeatView.as_view()),
 ]
