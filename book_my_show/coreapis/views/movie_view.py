@@ -1,4 +1,3 @@
-import json
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from book_my_show.coreapis.services.movie_service import MovieService
