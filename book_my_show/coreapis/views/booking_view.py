@@ -1,6 +1,5 @@
 from django.http import JsonResponse
 from rest_framework.views import APIView
-from rest_framework.views import Response
 from rest_framework.authtoken.models import Token
 from book_my_show.coreapis.services.booking_service import BookingService
 from rest_framework.permissions import IsAuthenticated
@@ -26,4 +25,4 @@ class BookingView(APIView):
         else:
             resp = "Seat not available"
 
-        return Response(resp)
+        return JsonResponse(resp, safe=False)
