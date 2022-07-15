@@ -11,13 +11,6 @@ class BookingService:
             self.seat_repository.get_available_seats_by_show_time_id(showtime_pk)
         )
 
-        # using list comprehension
-        # for seat_to_book in [
-        #     seat_details
-        #     for seat_details in all_seats_of_showtime
-        #     if seat_details["seat_id"] == int(seat_pk)
-        # ]:
-        #     return True
 
         if [
             seat_details
