@@ -1,7 +1,8 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import BaseUserManager
+from book_my_show.authenticate.models.user_model import UserModel
 
 
-class MyAccountManagerService(BaseUserManager):
+class UserManagerService(BaseUserManager):
     def create_user(
         self,
         email,
@@ -10,7 +11,8 @@ class MyAccountManagerService(BaseUserManager):
         last_name=None,
         address=None,
         phone_no=None,
-    ):
+    ) -> UserModel:
+
         if not email:
             raise ValueError("Users must have an email address")
 
@@ -26,7 +28,7 @@ class MyAccountManagerService(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password):
+    def create_superuser(self, email, password) -> UserModel:
         user = self.create_user(
             email=self.normalize_email(email),
             password=password,

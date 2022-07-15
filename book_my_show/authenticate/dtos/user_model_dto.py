@@ -18,7 +18,7 @@ class UserModelDto:
         last_name=None,
         address=None,
         phone_no=None,
-    ):
+    ) -> None:
 
         self.email = email
         self.password = password

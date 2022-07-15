@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
-from ..services.account_manager_service import MyAccountManagerService
+from ..services.user_manager_service import UserManagerService
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
@@ -25,7 +25,7 @@ class UserModel(SafeDeleteModel, AbstractBaseUser):
 
     USERNAME_FIELD = "email"
 
-    objects = MyAccountManagerService()
+    objects = UserManagerService()
 
     def __str__(self) -> str:
         return self.email
@@ -38,6 +38,6 @@ class UserModel(SafeDeleteModel, AbstractBaseUser):
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_auth_token(sender, instance=None, created=False, **kwargs):
+def create_auth_token(sender, instance=None, created=False, **kwargs) -> None:
     if created:
         Token.objects.create(user=instance)

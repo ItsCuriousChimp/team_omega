@@ -1,15 +1,14 @@
 import json
+from django.http import JsonResponse
 from rest_framework.views import APIView
-from rest_framework.response import Response
 from book_my_show.authenticate.services.user_service import UserService
-from book_my_show.authenticate.serializers.user_serializer import (
-    UserSerializer,
-)
+from book_my_show.authenticate.serializers.user_serializer import UserSerializer
 
 
 class RegisterUserView(APIView):
-    # GET /v1/register
-    def post(self, request) -> Response:
+
+    # POST /v1/register
+    def post(self, request) -> JsonResponse:
 
         register_user_service = UserService()
         serializer = UserSerializer(data=request.data)
@@ -19,4 +18,4 @@ class RegisterUserView(APIView):
         else:
             resp: json = serializer.errors
 
-        return Response(resp)
+        return JsonResponse(resp)

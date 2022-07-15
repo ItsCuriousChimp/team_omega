@@ -1,8 +1,6 @@
 import json
 from book_my_show.authenticate.repositories.user_repository import UserRepository
-
 from rest_framework.authtoken.models import Token
-
 from book_my_show.authenticate.serializers.user_serializer import UserSerializer
 
 
@@ -20,7 +18,7 @@ class UserService:
         register_user_repo.create_user_db(serializer)
 
         resp["email"] = serializer.validated_data["email"]
-        resp["Mobile Number"] = phone_no if phone_no != None else ""
+        resp["Mobile Number"] = phone_no if phone_no is not None else ""
         resp["Full Name"] = full_name
         token = Token.objects.get(user=resp["email"]).key
         resp["token"] = token
