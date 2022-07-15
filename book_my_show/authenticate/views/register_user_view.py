@@ -8,6 +8,7 @@ from book_my_show.authenticate.serializers.user_serializer import (
 
 
 class RegisterUserView(APIView):
+    # GET /v1/register
     def post(self, request) -> Response:
 
         register_user_service = UserService()

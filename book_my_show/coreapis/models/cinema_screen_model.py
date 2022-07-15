@@ -7,5 +7,5 @@ class CinemaScreen(BaseModel):
     screen_no = models.IntegerField()
     cinema_id = models.ForeignKey(Cinema, on_delete=models.CASCADE)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(str(self.cinema_id) + " screen:" + str(self.screen_no))

@@ -4,8 +4,9 @@ from book_my_show.coreapis.services.seats_service import SeatService
 
 
 class SeatView(APIView):
-    seat_service = SeatService()
 
+    # GET v1/showtimes/<str:id>/seats/
+    seat_service = SeatService()
     def get(self, request, id: str) -> Response:
         showtime_pk = id
         seat_type = None
@@ -20,6 +21,5 @@ class SeatView(APIView):
         elif seat_type == "unavailable":
             seats = self.seat_service.get_unavailable_seats(showtime_pk)
         else:
-            seats = "invalid seat type"
-
+            seats = "Invalid seat type"
         return Response(seats)

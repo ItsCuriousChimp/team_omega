@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('authenticate', '0001_initial'),
+        ("authenticate", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='usermodel',
-            name='deleted',
+            model_name="usermodel",
+            name="deleted",
             field=models.DateTimeField(editable=False, null=True),
         ),
         migrations.AddField(
-            model_name='usermodel',
-            name='deleted_by_cascade',
+            model_name="usermodel",
+            name="deleted_by_cascade",
             field=models.BooleanField(default=False, editable=False),
         ),
     ]
