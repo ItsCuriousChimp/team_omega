@@ -71,9 +71,9 @@ class Settings(Configuration):
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": "BMK_db",
+            "NAME": "db",
             "USER": "postgres",
-            "PASSWORD": "shrey",
+            "PASSWORD": "Manish@123",
             "HOST": "localhost",
             "PORT": "5432",
         }
