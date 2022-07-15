@@ -5,8 +5,8 @@ from rest_framework.views import APIView
 
 
 class HeartbeatView(APIView):
-    # GET /v1/heartbeat/
 
+    # GET /v1/heartbeat/
     def get(self, request) -> JsonResponse:
         heartbeat_service = HeartbeatService()
         heartbeat = heartbeat_service.get_heartbeat()
