@@ -7,5 +7,5 @@ class Cinema(BaseModel):
     name = models.CharField(max_length=32)
     city_id = models.ForeignKey(City, on_delete=models.CASCADE)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(self.name)

@@ -9,5 +9,5 @@ class Movie(BaseModel):
     release_date = models.DateField()
     cinema_id = models.ManyToManyField(Cinema)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(self.name)

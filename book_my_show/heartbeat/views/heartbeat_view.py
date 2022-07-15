@@ -7,10 +7,11 @@ from rest_framework.authentication import TokenAuthentication
 
 
 class HeartbeatView(APIView):
+    # GET /v1/heartbeat/
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def get(self, request):
+    def get(self, request) -> JsonResponse:
         heartbeat_service = HeartbeatService()
         heartbeat = heartbeat_service.get_heartbeat()
         return JsonResponse(

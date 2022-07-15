@@ -10,5 +10,5 @@ class Booking(BaseModel):
     show_time_id = models.ForeignKey(Showtime, on_delete=models.CASCADE)
     seat_id = models.ForeignKey(Seat, on_delete=models.CASCADE)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(str(self.user_id) + " " + str(self.show_time_id))
