@@ -30,6 +30,5 @@ class BookingView(APIView):
         resp_dict["User_Details"] = user_details
         
         return JsonResponse(
-            resp_dict,
-            # safe = False
+            resp_dict
         )
