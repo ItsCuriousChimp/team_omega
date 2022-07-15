@@ -73,7 +73,7 @@ class Settings(Configuration):
             "ENGINE": "django.db.backends.postgresql_psycopg2",
             "NAME": "BMK_db",
             "USER": "postgres",
-            "PASSWORD": "shrey",
+            "PASSWORD": "postgreSQL",
             "HOST": "localhost",
             "PORT": "5432",
         }
