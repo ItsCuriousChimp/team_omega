@@ -1,6 +1,7 @@
 from pathlib import Path
 from configurations import Configuration
 from book_my_show.common.enums.app_environment import AppEnvironment
+import os
 
 
 class Settings(Configuration):
@@ -62,12 +63,6 @@ class Settings(Configuration):
 
     WSGI_APPLICATION = "book_my_show.wsgi.application"
 
-    # DATABASES = {
-    #     "default": {
-    #         "ENGINE": "django.db.backends.sqlite3",
-    #         "NAME": BASE_DIR / "db.sqlite3",
-    #     }
-    # }
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql_psycopg2",

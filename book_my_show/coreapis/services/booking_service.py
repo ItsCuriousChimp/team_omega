@@ -7,10 +7,9 @@ class BookingService:
     booking_repository = BookingRepository()
 
     def is_available(self, showtime_pk: str, seat_pk: str) -> bool:
-        all_seats_of_showtime = (
-            self.seat_repository.get_available_seats_by_show_time_id(showtime_pk)
-        )
-
+        all_seats_of_showtime: list[
+            dict
+        ] = self.seat_repository.get_available_seats_by_show_time_id(showtime_pk)
 
         if [
             seat_details
@@ -21,7 +20,7 @@ class BookingService:
 
         return False
 
-    def create_booking(self, user_id, showtime_id, seat_id):
+    def create_booking(self, user_id, showtime_id, seat_id) -> None:
         self.booking_repository.book_seat_by_show_time_id(user_id, showtime_id, seat_id)
     
     def get_user_name(self, user_id):

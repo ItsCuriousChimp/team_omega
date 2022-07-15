@@ -1,6 +1,5 @@
 from django.http import JsonResponse
 from rest_framework.views import APIView
-from rest_framework.views import Response
 from rest_framework.authtoken.models import Token
 from book_my_show.coreapis.services.booking_service import BookingService
 from rest_framework.permissions import IsAuthenticated
@@ -30,7 +29,7 @@ class BookingView(APIView):
         resp_dict["Status"] = resp
         resp_dict["User_Details"] = user_details
         
-        return Response(
+        return JsonResponse(
             resp_dict,
             # safe = False
         )

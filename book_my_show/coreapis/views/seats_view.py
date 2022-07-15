@@ -1,5 +1,5 @@
+from django.http import JsonResponse
 from rest_framework.views import APIView
-from rest_framework.views import Response
 from book_my_show.coreapis.services.seats_service import SeatService
 
 
@@ -7,7 +7,8 @@ class SeatView(APIView):
 
     # GET v1/showtimes/<str:id>/seats/
     seat_service = SeatService()
-    def get(self, request, id: str) -> Response:
+
+    def get(self, request, id: str) -> JsonResponse:
         showtime_pk = id
         seat_type = None
 
@@ -22,4 +23,4 @@ class SeatView(APIView):
             seats = self.seat_service.get_unavailable_seats(showtime_pk)
         else:
             seats = "Invalid seat type"
-        return Response(seats)
+        return JsonResponse(seats, safe=False)
