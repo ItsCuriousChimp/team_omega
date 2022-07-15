@@ -1,5 +1,4 @@
 from django.contrib.auth.models import BaseUserManager
-from book_my_show.authenticate.models.user_model import UserModel
 
 
 class UserManagerService(BaseUserManager):
@@ -11,7 +10,7 @@ class UserManagerService(BaseUserManager):
         last_name=None,
         address=None,
         phone_no=None,
-    ) -> UserModel:
+    ):
 
         if not email:
             raise ValueError("Users must have an email address")
@@ -28,7 +27,7 @@ class UserManagerService(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password) -> UserModel:
+    def create_superuser(self, email, password):
         user = self.create_user(
             email=self.normalize_email(email),
             password=password,

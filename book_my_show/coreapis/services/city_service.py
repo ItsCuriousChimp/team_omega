@@ -3,17 +3,16 @@ from book_my_show.coreapis.repositories.city_repository import CityRepository
 
 
 class CityService:
-
     city_repository = CityRepository()
 
     def fetch_city_list(self) -> list[dict]:
         city_list: City = self.city_repository.get_city_list()
+        cities_details = []
 
-        city_list_dict = []
+        for city in city_list:
+            detail = {}
+            detail["id"] = str(city.id)
+            detail["City_Name"] = str(city)
+            cities_details.append(detail)
 
-        for i in city_list:
-            temp_list = {}
-            temp_list["id"] = str(i.id)
-            temp_list["City_Name"] = str(i)
-            city_list_dict.append(temp_list)
-        return city_list_dict
+        return cities_details

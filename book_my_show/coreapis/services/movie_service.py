@@ -7,13 +7,13 @@ class MovieService:
     cinema_repository = MovieRepository()
 
     def get_movies_list(self, city_pk: str) -> list[dict]:
-
         movies_in_city: Movie = self.cinema_repository.get_movies_by_city_id(city_pk)
         movies_list = []
-        for i in movies_in_city:
+
+        for movie in movies_in_city:
             movie_detail = {}
-            movie_detail["Movie_Id"] = str(i.id)
-            movie_detail["Movie_Name"] = str(i)
+            movie_detail["Movie_Id"] = str(movie.id)
+            movie_detail["Movie_Name"] = str(movie)
             movies_list.append(movie_detail)
 
         return movies_list
