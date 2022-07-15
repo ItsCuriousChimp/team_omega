@@ -1,12 +1,14 @@
 from book_my_show.coreapis.models.city_model import City
 from book_my_show.coreapis.repositories.city_repository import CityRepository
+
+
 class CityService:
 
-    
     city_repository = CityRepository()
-    def fetch_city_list(self) -> list:
-        city_list = self.city_repository.get_city_list()
-        
+
+    def fetch_city_list(self) -> list[dict]:
+        city_list: City = self.city_repository.get_city_list()
+
         city_list_dict = []
 
         for i in city_list:

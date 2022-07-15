@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import connection
 
 
@@ -14,8 +15,8 @@ class CinemaRepository:
                                 ON s.cinema_screen_id_id = sc.id
                             INNER JOIN coreapis_Cinema as c
                                 ON sc.cinema_id_id = c.id
-                            WHERE s.movie_id_id= %s  AND s.deleted IS NULL """,
-            [movie_pk],
+                            WHERE s.movie_id_id= %s  AND s.deleted IS NULL AND s.start_time_at_utc >= %s""",
+            [movie_pk, datetime.now()],
         )
         data: dict = self.dictfetchall(cursor)
         return data
