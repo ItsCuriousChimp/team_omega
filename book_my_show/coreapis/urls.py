@@ -6,7 +6,7 @@ from book_my_show.coreapis.views.city_view import CityView
 
 urlpatterns = [
     path("showtimes/<str:id>/seats/", SeatView.as_view()),
-    path("city/<str:id>/movies/", MovieList.as_view()),
+    path("cities/<str:id>/movies/", MovieList.as_view()),
     path("movies/<str:id>/cinemas/", CinemaView.as_view()),
     path("cities/", CityView.as_view()),
 ]

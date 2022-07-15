@@ -2,7 +2,7 @@ from django.db import connection
 
 
 class SeatRepository:
-    def get_all_seats(self, showtime_pk: str) -> list[dict]:
+    def get_all_seats_by_show_time_id(self, showtime_pk: str) -> list[dict]:
         cursor = connection.cursor()
         cursor.execute(
             """SELECT s.id as seat_id, s.seat_no as seat_number
@@ -20,7 +20,7 @@ class SeatRepository:
         data = self.dictfetchall(cursor)
         return data
 
-    def get_unavailable_seats(self, showtime_pk: str) -> list[dict]:
+    def get_unavailable_seats_by_show_time_id(self, showtime_pk: str) -> list[dict]:
         cursor = connection.cursor()
         cursor.execute(
             """SELECT s.id as seat_id, s.seat_no as seat_number, "unavailable" as availability
@@ -35,7 +35,7 @@ class SeatRepository:
         data = self.dictfetchall(cursor)
         return data
 
-    def get_available_seats(self, showtime_pk: str) -> list[dict]:
+    def get_available_seats_by_show_time_id(self, showtime_pk: str) -> list[dict]:
         cursor = connection.cursor()
         cursor.execute(
             """SELECT s.id as seat_id, s.seat_no as seat_number, "available" as availability
