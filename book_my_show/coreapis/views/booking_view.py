@@ -1,19 +1,24 @@
-from turtle import pen
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.views import Response
 from rest_framework.authtoken.models import Token
+from book_my_show.coreapis.services.booking_service import BookingService
 
 
 class BookingView(APIView):
-    # GET /v1/movies/<str:id>/cinema/
+    booking_service = BookingService()
 
-    def post(self, request, pk1, pk2) -> JsonResponse:
+    # POST /v1/showtime/<str:seat_id>/seat/<str:seat_id>/
+    def post(self, request, show_id: str, seat_id: str) -> JsonResponse:
         authtoken = request.headers.get("Authorization")[6:]
-        # print(auth)
-        # show_id = pk1
-        # seat_id = pk2
-        user = Token.objects.get(key=authtoken).user
-        print(user)
+        user_id = Token.objects.get(key=authtoken).user
 
-        return Response("hi")
+        seat_available = self.booking_service.is_available(show_id, seat_id)
+
+        if seat_available:
+            self.booking_service.create_booking(user_id, show_id, seat_id)
+            resp = "Congratulations! Seat Booked."
+        else:
+            resp = "Seat not available"
+
+        return Response(resp)
