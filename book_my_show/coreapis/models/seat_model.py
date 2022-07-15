@@ -9,4 +9,6 @@ class Seat(BaseModel):
     cinema_screen_id = models.ForeignKey(CinemaScreen, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(str(self.cinema_screen_id) + " " + str(self.seat_no))
+        return str(
+            str(self.cinema_screen_id) + " " + str(self.seat_no) + " " + str(self.pk)
+        )

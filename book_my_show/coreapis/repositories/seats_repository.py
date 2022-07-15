@@ -50,6 +50,7 @@ class SeatRepository:
                     FROM coreapis_Booking as b
                     INNER JOIN coreapis_Showtime as sh
                         ON b.show_time_id_id == %s
+                    AND b.deleted is NULL
                 )
                 AND sh.deleted IS NULL 
                 AND s.deleted IS NULL
