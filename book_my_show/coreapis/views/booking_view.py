@@ -16,7 +16,6 @@ class BookingView(APIView):
 
         authtoken = request.headers.get("Authorization")[6:]
         user_id = Token.objects.get(key=authtoken).user
-        user_details = self.booking_service.get_user_name((user_id.pk))
         seat_available = self.booking_service.is_seat_available(show_id, seat_id)
         response_dict = {}
 
@@ -31,6 +30,6 @@ class BookingView(APIView):
             booking_status = "Seat not available"
 
         response_dict["Status"] = booking_status
-        response_dict["User_Details"] = user_details
+        response_dict["User_Details"] = str(user_id)
 
         return JsonResponse(response_dict)
