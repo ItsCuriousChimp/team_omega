@@ -25,13 +25,3 @@ class Services(containers.DeclarativeContainer):
     movie_service = providers.Factory(movie_service.MovieService)
     seats_service = providers.Factory(seats_service.SeatService)
 
-
-# class Repositories(containers.DeclarativeContainer):
-# wiring_config = containers.WiringConfiguration(
-#     modules=[
-#         "book_my_show.coreapis.services.cinema_service",
-#     ],
-# )
-# config = providers.Configuration()
-
-# cinema_repo = providers.Factory(cinema_repository.CinemaRepository)
