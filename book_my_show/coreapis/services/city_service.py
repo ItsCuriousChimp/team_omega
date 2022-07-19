@@ -1,12 +1,10 @@
 from book_my_show.coreapis.models.city_model import City
 from book_my_show.coreapis.repositories.city_repository import CityRepository
-from book_my_show.repo_container import RepositoryContainer
+from book_my_show.containers.repo_container import RepositoryContainer
 from dependency_injector.wiring import inject, Provide
 
 
 class CityService:
-    city_repository = CityRepository()
-
     @inject
     def fetch_city_list(
         self,

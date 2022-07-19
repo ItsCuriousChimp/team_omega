@@ -8,7 +8,7 @@ from book_my_show.coreapis.services import (
 )
 
 
-class Services(containers.DeclarativeContainer):
+class ServiceContainer(containers.DeclarativeContainer):
     wiring_config = containers.WiringConfiguration(
         modules=[
             "book_my_show.coreapis.views.booking_view",

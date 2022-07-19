@@ -6,8 +6,6 @@ from dependency_injector.wiring import inject, Provide
 
 
 class SeatService:
-    seat_repository = SeatRepository()
-
     @inject
     def get_all_seats(
         self,
@@ -20,6 +18,7 @@ class SeatService:
 
         return all_seats_of_showtime
 
+    @inject
     def get_unavailable_seats(
         self,
         showtime_pk: str,
@@ -31,6 +30,7 @@ class SeatService:
 
         return unavailable_seat_of_showtime
 
+    @inject
     def get_seat_available(
         self,
         showtime_pk: str,

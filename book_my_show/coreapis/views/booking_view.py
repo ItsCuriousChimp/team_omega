@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from book_my_show.coreapis.services.booking_service import BookingService
 from dependency_injector.wiring import inject, Provide
-from book_my_show.containers import Services
+from book_my_show.containers.service_container import ServiceContainer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 
@@ -19,7 +19,7 @@ class BookingView(APIView):
         request,
         show_id: str,
         seat_id: str,
-        booking_service: BookingService = Provide[Services.booking_service],
+        booking_service: BookingService = Provide[ServiceContainer.booking_service],
     ) -> JsonResponse:
 
         # check this code

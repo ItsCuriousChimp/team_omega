@@ -1,12 +1,10 @@
 from book_my_show.coreapis.models.movie_model import Movie
 from book_my_show.coreapis.repositories.movie_repository import MovieRepository
-from book_my_show.repo_container import RepositoryContainer
+from book_my_show.containers.repo_container import RepositoryContainer
 from dependency_injector.wiring import inject, Provide
 
 
 class MovieService:
-
-    # cinema_repository = MovieRepository()
     @inject
     def get_movies_list(
         self,

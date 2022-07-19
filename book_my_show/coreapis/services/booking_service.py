@@ -1,13 +1,11 @@
 from book_my_show.coreapis.repositories.booking_repository import BookingRepository
 
 from book_my_show.coreapis.repositories.seats_repository import SeatRepository
-from book_my_show.repo_container import RepositoryContainer
+from book_my_show.containers.repo_container import RepositoryContainer
 from dependency_injector.wiring import inject, Provide
-from dependency_injector import containers, providers
+
 
 class BookingService:
-    # seat_repository = SeatRepository()
-    # booking_repository = BookingRepository()
     @inject
     def is_seat_available(
         self,
@@ -29,6 +27,7 @@ class BookingService:
 
         return False
 
+    @inject
     def create_booking(
         self,
         user_id: str,
@@ -40,6 +39,7 @@ class BookingService:
     ) -> None:
         booking_repository.book_seat_by_show_time_id(user_id, showtime_id, seat_id)
 
+    @inject
     def get_booking_response(self, seat_available, user_id, show_id, seat_id):
         response_dict = {}
 

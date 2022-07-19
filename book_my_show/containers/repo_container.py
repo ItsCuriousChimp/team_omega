@@ -13,7 +13,7 @@ class RepositoryContainer(containers.DeclarativeContainer):
             "book_my_show.coreapis.services.booking_service",
             "book_my_show.coreapis.services.city_service",
             "book_my_show.coreapis.services.movie_service",
-            "book_my_show.coreapis.services.seat_searvice",
+            "book_my_show.coreapis.services.seats_service",
         ],
     )
     cinema_repository = providers.Factory(CinemaRepository)
