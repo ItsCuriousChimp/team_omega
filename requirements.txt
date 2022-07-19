@@ -10,4 +10,5 @@ django-configurations==2.3.2
 python-dotenv==0.20.0
 django-safedelete==1.2.2
 psycopg2==2.9.3
-django-injector==0.2.5
+# django-injector==0.2.5
+dependency-injector==4.39.1

@@ -1,5 +1,4 @@
 from django.db import models
-
 from book_my_show.coreapis.models.cinema_screen_model import CinemaScreen
 from book_my_show.common.models.base_model import BaseModel
 

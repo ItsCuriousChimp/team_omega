@@ -26,3 +26,14 @@ class SeatService:
         ] = self.seat_repository.get_available_seats_by_show_time_id(showtime_pk)
 
         return available_seat_of_showtime
+
+    def get_seat_by_seat_type(self, seat_type, showtime_pk: str) -> list[dict]:
+
+        if not seat_type:
+            seats = self.get_all_seats(showtime_pk)
+        elif seat_type == "available":
+            seats = self.get_seat_available(showtime_pk)
+        elif seat_type == "unavailable":
+            seats = self.get_unavailable_seats(showtime_pk)
+
+        return seats
