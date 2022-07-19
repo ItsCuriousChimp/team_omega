@@ -52,12 +52,3 @@ class ResponseMaker:
         response_dict["User_Details"] = str(user_id)
 
         return response_dict
-
-
-class BookingServiceContainer(containers.DeclarativeContainer):
-    # wiring_config = containers.WiringConfiguration(
-    #     modules=["coreapis"]  # or "users" in your case
-    # )
-    config = providers.Configuration()
-
-    token_user_service = providers.Factory(BookingService)

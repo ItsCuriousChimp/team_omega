@@ -6,7 +6,6 @@ from rest_framework.authtoken.models import Token
 from book_my_show.coreapis.services.booking_service import (
     BookingService,
     ResponseMaker,
-    BookingServiceContainer,
 )
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
@@ -16,7 +15,7 @@ from dependency_injector.wiring import inject, Provide
 class BookingView(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
-    # booking_service = BookingService()
+    booking_service = BookingService()
     response_maker = ResponseMaker()
 
     # POST /v1/showtimes/<str:show_id>/seats/<str:seat_id>/
@@ -26,20 +25,17 @@ class BookingView(APIView):
         request,
         show_id: str,
         seat_id: str,
-        booking_service: BookingService = Provide[
-            BookingServiceContainer.token_user_service
-        ],
     ) -> JsonResponse:
-        print(booking_service)
+
         # check this code
         authtoken = request.headers.get("Authorization")[6:]
         user_id = Token.objects.get(key=authtoken).user
-        print(booking_service)
-        seat_available = booking_service.is_seat_available(show_id, seat_id)
+
+        seat_available = self.booking_service.is_seat_available(show_id, seat_id)
         response_dict = {}
 
         if seat_available:
-            booking_service.create_booking(user_id, show_id, seat_id)
+            self.booking_service.create_booking(user_id, show_id, seat_id)
             response_dict = self.response_maker.get_booking_response(
                 True, user_id, show_id, seat_id
             )
