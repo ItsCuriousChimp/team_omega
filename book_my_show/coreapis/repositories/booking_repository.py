@@ -9,7 +9,3 @@ class BookingRepository:
     ) -> None:
         booking = Booking.objects.create_booking(user_id, show_time_id, seat_id)
         booking.save()
-
-    def fetch_user_details_by_user_is(self, user_pk: str) -> UserModel:
-        user_details = UserModel.objects.filter(pk=user_pk)
-        return user_details
