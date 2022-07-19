@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from rest_framework.views import APIView
-from book_my_show.coreapis.containers.service_container import ServiceContainer
+
+from book_my_show.container import Container
 from book_my_show.coreapis.services.seats_service import SeatService
 from dependency_injector.wiring import inject, Provide
 
@@ -13,7 +14,7 @@ class SeatView(APIView):
         self,
         request,
         id: str,
-        seat_service: SeatService = Provide[ServiceContainer.seats_service],
+        seat_service: SeatService = Provide[Container.seats_service],
     ) -> JsonResponse:
         showtime_pk = id
         seat_type = None
