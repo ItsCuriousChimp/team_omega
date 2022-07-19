@@ -20,13 +20,10 @@ class SeatView(APIView):
         if "seat_type" in request.GET:
             seat_type = request.GET["seat_type"]
 
-        if not seat_type:
-            seats = seat_service.get_all_seats(showtime_pk)
-        elif seat_type == "available":
-            seats = seat_service.get_seat_available(showtime_pk)
-        elif seat_type == "unavailable":
-            seats = seat_service.get_unavailable_seats(showtime_pk)
-        else:
-            seats = "Invalid seat type"
+        try:
+            seats = seat_service.get_seat_by_seat_type(seat_type, showtime_pk)
+
+        except:
+            seats = "Invalid Seat Type"
 
         return JsonResponse(seats, safe=False)
