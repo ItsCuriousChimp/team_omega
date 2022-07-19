@@ -22,7 +22,6 @@ class BookingView(APIView):
         booking_service: BookingService = Provide[ServiceContainer.booking_service],
     ) -> JsonResponse:
 
-        # check this code
         authtoken = request.headers.get("Authorization")[6:]
         user_id = Token.objects.get(key=authtoken).user
 
