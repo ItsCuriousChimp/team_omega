@@ -5,7 +5,6 @@ from book_my_show.repo_container import RepositoryContainer
 from dependency_injector.wiring import inject, Provide
 from dependency_injector import containers, providers
 
-
 class BookingService:
     # seat_repository = SeatRepository()
     # booking_repository = BookingRepository()
@@ -41,10 +40,9 @@ class BookingService:
     ) -> None:
         booking_repository.book_seat_by_show_time_id(user_id, showtime_id, seat_id)
 
-
-class ResponseMaker:
     def get_booking_response(self, seat_available, user_id, show_id, seat_id):
         response_dict = {}
+
         if seat_available:
             booking_status = "Congratulations! Seat Booked."
             response_dict["Booking Details"] = {
@@ -53,6 +51,7 @@ class ResponseMaker:
             }
         else:
             booking_status = "Seat not available"
+
         response_dict["Status"] = booking_status
         response_dict["User_Details"] = str(user_id)
 

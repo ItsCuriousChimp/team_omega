@@ -1,20 +1,18 @@
 from django.http import JsonResponse
 from rest_framework.views import APIView
-
-from book_my_show.container import Container
 from book_my_show.coreapis.services.seats_service import SeatService
 from dependency_injector.wiring import inject, Provide
+from book_my_show.containers import Services
 
 
 class SeatView(APIView):
-    seat_service = SeatService()
 
     # GET v1/showtimes/<str:id>/seats/
     def get(
         self,
         request,
         id: str,
-        seat_service: SeatService = Provide[Container.seats_service],
+        seat_service: SeatService = Provide[Services.seats_service],
     ) -> JsonResponse:
         showtime_pk = id
         seat_type = None

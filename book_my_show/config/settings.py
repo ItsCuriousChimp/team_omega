@@ -21,13 +21,13 @@ class Settings(Configuration):
         "django.contrib.sessions",
         "django.contrib.messages",
         "django.contrib.staticfiles",
-        "safedelete",
-        "django_injector",
         "rest_framework",
         "book_my_show.heartbeat",
         "book_my_show.authenticate",
-        "rest_framework.authtoken",
         "book_my_show.coreapis",
+        "rest_framework.authtoken",
+        "safedelete",
+        "django_injector",
     ]
 
     MIDDLEWARE = [
