@@ -1,8 +1,8 @@
 from book_my_show.coreapis.repositories.seats_repository import (
     SeatRepository,
 )
-from book_my_show.repo_container import RepositoryContainer
 from dependency_injector.wiring import inject, Provide
+from book_my_show.containers.repo_container import RepositoryContainer
 
 
 class SeatService:

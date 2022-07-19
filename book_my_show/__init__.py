@@ -1,10 +1,10 @@
 import django
 
-
 django.setup()
-from book_my_show.containers import Services
 
-from book_my_show.repo_container import RepositoryContainer
+from book_my_show.containers.service_container import ServiceContainer
 
-service_container = Services()
+from book_my_show.containers.repo_container import RepositoryContainer
+
+service_container = ServiceContainer()
 repo_container = RepositoryContainer()

@@ -27,7 +27,7 @@ class Settings(Configuration):
         "book_my_show.coreapis",
         "rest_framework.authtoken",
         "safedelete",
-        "django_injector",
+        # "django_injector",
     ]
 
     MIDDLEWARE = [
