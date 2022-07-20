@@ -1,6 +1,6 @@
 from abc import ABC
 from book_my_show.coreapis.repositories.seats_repository import (
-    SeatRepository,
+    ISeatRepository,
 )
 from dependency_injector.wiring import inject, Provide
 from book_my_show.containers.repo_container import RepositoryContainer
@@ -21,7 +21,7 @@ class SeatService(ISeatService):
     def get_all_seats(
         self,
         showtime_pk: str,
-        seat_repository: SeatRepository = Provide[RepositoryContainer.seat_repository],
+        seat_repository: ISeatRepository = Provide[RepositoryContainer.seat_repository],
     ) -> list[dict]:
         all_seats_of_showtime = seat_repository.get_all_seats_by_show_time_id(
             showtime_pk
@@ -33,7 +33,7 @@ class SeatService(ISeatService):
     def get_unavailable_seats(
         self,
         showtime_pk: str,
-        seat_repository: SeatRepository = Provide[RepositoryContainer.seat_repository],
+        seat_repository: ISeatRepository = Provide[RepositoryContainer.seat_repository],
     ) -> list[dict]:
         unavailable_seat_of_showtime: list[
             dict
@@ -45,7 +45,7 @@ class SeatService(ISeatService):
     def get_seat_available(
         self,
         showtime_pk: str,
-        seat_repository: SeatRepository = Provide[RepositoryContainer.seat_repository],
+        seat_repository: ISeatRepository = Provide[RepositoryContainer.seat_repository],
     ) -> list[dict]:
         available_seat_of_showtime: list[
             dict

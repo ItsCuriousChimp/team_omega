@@ -1,8 +1,15 @@
 from datetime import datetime
 from django.db import connection
+from abc import ABC, abstractmethod  # Built in. No install needed.
 
 
-class CinemaRepository:
+class ICinemaRepository(ABC):
+    @abstractmethod
+    def get_cinemas_by_movie_id(self):
+        pass
+
+
+class CinemaRepository(ICinemaRepository):
     def get_cinemas_by_movie_id(self, movie_pk: str) -> dict:
         cursor = connection.cursor()
         cursor.execute(

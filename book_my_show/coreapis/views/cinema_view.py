@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from book_my_show.containers.service_container import ServiceContainer
 from book_my_show.coreapis.services.cinema_service import CinemaService
 from dependency_injector.wiring import inject, Provide
-
+from book_my_show.coreapis.services.cinema_service import ICinemaService
 
 class CinemaView(APIView):
 
@@ -13,7 +13,7 @@ class CinemaView(APIView):
         self,
         request,
         id: str,
-        cinema_service: CinemaService = Provide[ServiceContainer.cinema_service],
+        cinema_service: ICinemaService = Provide[ServiceContainer.cinema_service],
     ) -> JsonResponse:
         movie_pk = id
         print(type(cinema_service))

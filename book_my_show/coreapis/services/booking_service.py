@@ -1,9 +1,12 @@
 from book_my_show.coreapis.repositories.booking_repository import BookingRepository
 from abc import ABC, abstractmethod
 from book_my_show.coreapis.repositories.seats_repository import SeatRepository
+from book_my_show.coreapis.repositories.booking_repository import IBookingRepository
+
+from book_my_show.coreapis.repositories.seats_repository import ISeatRepository
 from book_my_show.containers.repo_container import RepositoryContainer
 from dependency_injector.wiring import inject, Provide
-class AbstractBookingService(ABC):
+class IBookingService(ABC):
 
     def is_seat_available(self):
         pass
@@ -19,7 +22,7 @@ class BookingService:
         self,
         showtime_pk: str,
         seat_pk: str,
-        seat_repository: SeatRepository = Provide[RepositoryContainer.seat_repository],
+        seat_repository: ISeatRepository = Provide[RepositoryContainer.seat_repository],
     ) -> bool:
 
         all_seats_of_showtime: list[
@@ -41,7 +44,7 @@ class BookingService:
         user_id: str,
         showtime_id: str,
         seat_id: str,
-        booking_repository: BookingRepository = Provide[
+        booking_repository: IBookingRepository = Provide[
             RepositoryContainer.booking_repository
         ],
     ) -> None:

@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from book_my_show.coreapis.services.city_service import CityService
 from dependency_injector.wiring import inject, Provide
 from book_my_show.containers.service_container import ServiceContainer
-
+from book_my_show.coreapis.services.city_service import ICityService
 
 class CityView(APIView):
 
@@ -12,7 +12,7 @@ class CityView(APIView):
     def get(
         self,
         request,
-        city_service: CityService = Provide[ServiceContainer.city_service],
+        city_service: ICityService = Provide[ServiceContainer.city_service],
     ) -> JsonResponse:
         city_list = city_service.fetch_city_list()
 

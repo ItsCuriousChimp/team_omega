@@ -6,7 +6,7 @@ from dependency_injector.wiring import inject, Provide
 from book_my_show.containers.service_container import ServiceContainer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
-
+from book_my_show.coreapis.services.booking_service import IBookingService
 
 class BookingView(APIView):
     authentication_classes = [TokenAuthentication]
@@ -19,7 +19,7 @@ class BookingView(APIView):
         request,
         show_id: str,
         seat_id: str,
-        booking_service: BookingService = Provide[ServiceContainer.booking_service],
+        booking_service: IBookingService = Provide[ServiceContainer.booking_service],
     ) -> JsonResponse:
 
         authtoken = request.headers.get("Authorization")[6:]

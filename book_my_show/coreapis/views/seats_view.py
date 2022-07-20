@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from book_my_show.coreapis.services.seats_service import SeatService
 from dependency_injector.wiring import inject, Provide
 from book_my_show.containers.service_container import ServiceContainer
-
+from book_my_show.coreapis.services.seats_service import ISeatService
 
 class SeatView(APIView):
 
@@ -12,7 +12,7 @@ class SeatView(APIView):
         self,
         request,
         id: str,
-        seat_service: SeatService = Provide[ServiceContainer.seats_service],
+        seat_service: ISeatService = Provide[ServiceContainer.seats_service],
     ) -> JsonResponse:
         showtime_pk = id
         seat_type = None
