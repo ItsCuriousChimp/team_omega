@@ -1,13 +1,19 @@
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from book_my_show.coreapis.services.seats_service import SeatService
+from dependency_injector.wiring import inject, Provide
+from book_my_show.containers.service_container import ServiceContainer
 
 
 class SeatView(APIView):
-    seat_service = SeatService()
 
     # GET v1/showtimes/<str:id>/seats/
-    def get(self, request, id: str) -> JsonResponse:
+    def get(
+        self,
+        request,
+        id: str,
+        seat_service: SeatService = Provide[ServiceContainer.seats_service],
+    ) -> JsonResponse:
         showtime_pk = id
         seat_type = None
 
@@ -15,7 +21,8 @@ class SeatView(APIView):
             seat_type = request.GET["seat_type"]
 
         try:
-            seats = self.seat_service.get_seat_by_seat_type(seat_type, showtime_pk)
+            seats = seat_service.get_seat_by_seat_type(seat_type, showtime_pk)
+
         except:
             seats = "Invalid Seat Type"
 
