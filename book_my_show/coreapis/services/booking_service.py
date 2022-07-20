@@ -3,7 +3,7 @@ from book_my_show.coreapis.repositories.booking_repository import IBookingReposi
 from book_my_show.coreapis.repositories.seats_repository import ISeatRepository
 from book_my_show.containers.repo_container import RepositoryContainer
 from dependency_injector.wiring import inject, Provide
-from rest_framework.authtoken.models import Token
+
 
 class IBookingService(ABC):
     def is_seat_available(self):
@@ -18,6 +18,7 @@ class IBookingService(ABC):
     def verify_booking(self):
         pass
 
+
 class BookingService:
     def __init__(
         self,
@@ -29,7 +30,6 @@ class BookingService:
         self.seat_repository = seat_repository
         self.booking_repository = booking_repository
 
-    @inject
     def is_seat_available(
         self,
         showtime_pk: str,
@@ -47,7 +47,6 @@ class BookingService:
             return True
         return False
 
-    @inject
     def create_booking(
         self,
         user_id: str,
@@ -56,7 +55,6 @@ class BookingService:
     ) -> None:
         self.booking_repository.book_seat_by_show_time_id(user_id, showtime_id, seat_id)
 
-    @inject
     def get_booking_response(
         self,
         seat_available: bool,
@@ -80,13 +78,13 @@ class BookingService:
 
         return response_dict
 
-    def get_user_id(self, user_auth):
-        return Token.objects.get(key=user_auth).user
-        
-    @inject
-    def verify_booking(self, show_id, seat_id, user_auth):
+    def get_user_id(self, user_auth: str) -> IBookingRepository:
+        return self.booking_repository.get_user_id_by_auth_token(user_auth)
+
+    def verify_booking(self, show_id: str, seat_id: str, user_auth: str) -> dict:
         availability = self.is_seat_available(show_id, seat_id)
         user_id = self.get_user_id(user_auth)
+
         if availability:
             self.create_booking(user_id, show_id, seat_id)
 

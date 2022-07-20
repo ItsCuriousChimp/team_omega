@@ -19,7 +19,6 @@ class BookingView(APIView):
     ) -> None:
         self.booking_service = booking_service
 
-    @inject
     def post(
         self,
         request,
@@ -27,7 +26,9 @@ class BookingView(APIView):
         seat_id: str,
     ) -> JsonResponse:
         authtoken = request.headers.get("Authorization")[6:]
-        
-        booking_status = self.booking_service.verify_booking(show_id, seat_id, authtoken)
+
+        booking_status = self.booking_service.verify_booking(
+            show_id, seat_id, authtoken
+        )
 
         return JsonResponse(booking_status)
