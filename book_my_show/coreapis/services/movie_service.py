@@ -1,10 +1,15 @@
+from abc import ABC
 from book_my_show.coreapis.models.movie_model import Movie
 from book_my_show.coreapis.repositories.movie_repository import MovieRepository
 from book_my_show.containers.repo_container import RepositoryContainer
 from dependency_injector.wiring import inject, Provide
 
+class IMovieService(ABC):
+    def get_movies_list(self):
+        pass
 
-class MovieService:
+
+class MovieService(IMovieService):
     @inject
     def get_movies_list(
         self,

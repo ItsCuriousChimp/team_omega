@@ -1,10 +1,15 @@
+from abc import ABC
 from book_my_show.coreapis.models.city_model import City
 from book_my_show.coreapis.repositories.city_repository import CityRepository
 from book_my_show.containers.repo_container import RepositoryContainer
 from dependency_injector.wiring import inject, Provide
 
+class ICityService(ABC):
+    def fetch_city_list(self):
+        pass
 
-class CityService:
+
+class CityService(ICityService):
     @inject
     def fetch_city_list(
         self,

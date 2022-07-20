@@ -1,11 +1,22 @@
+from abc import ABC
 from book_my_show.coreapis.repositories.seats_repository import (
     SeatRepository,
 )
 from dependency_injector.wiring import inject, Provide
 from book_my_show.containers.repo_container import RepositoryContainer
 
+class ISeatService(ABC):
+    def get_all_seats(self):
+        pass
+    def get_unavailable_seats(self):
+        pass
+    def get_seat_available(self):
+        pass
+    def get_seat_by_seat_type(self):
+        pass
 
-class SeatService:
+
+class SeatService(ISeatService):
     @inject
     def get_all_seats(
         self,
