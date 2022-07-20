@@ -33,12 +33,9 @@ class BookingView(APIView):
 
         if seat_available:
             self.booking_service.create_booking(user_id, show_id, seat_id)
-            response_dict = self.booking_service.get_booking_response(
-                True, user_id, show_id, seat_id
-            )
-        else:
-            response_dict = self.booking_service.get_booking_response(
-                False, user_id, show_id, seat_id
-            )
+
+        response_dict = self.booking_service.get_booking_response(
+            seat_available, user_id, show_id, seat_id
+        )
 
         return JsonResponse(response_dict)
