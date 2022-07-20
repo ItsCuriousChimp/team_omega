@@ -25,7 +25,6 @@ class SeatService(ISeatService):
     ) -> None:
         self.seat_repository = seat_repository
 
-    @inject
     def get_all_seats(
         self,
         showtime_pk: str,
@@ -36,7 +35,6 @@ class SeatService(ISeatService):
 
         return all_seats_of_showtime
 
-    @inject
     def get_unavailable_seats(
         self,
         showtime_pk: str,
@@ -47,7 +45,6 @@ class SeatService(ISeatService):
 
         return unavailable_seat_of_showtime
 
-    @inject
     def get_seat_available(
         self,
         showtime_pk: str,

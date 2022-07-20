@@ -13,7 +13,6 @@ class CinemaView(APIView):
     ) -> None:
         self.cinema_service = cinema_service
 
-    @inject
     def get(
         self,
         request,

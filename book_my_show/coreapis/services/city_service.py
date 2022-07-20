@@ -17,7 +17,6 @@ class CityService(ICityService):
     ) -> None:
         self.city_repository = city_repository
 
-    @inject
     def fetch_city_list(
         self,
     ) -> list[dict]:

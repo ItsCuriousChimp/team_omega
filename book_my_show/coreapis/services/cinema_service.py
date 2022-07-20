@@ -18,7 +18,6 @@ class CinemaService:
     ) -> None:
         self.cinema_repository = cinema_repository
 
-    @inject
     def get_cinemas(
         self,
         movie_pk: str,

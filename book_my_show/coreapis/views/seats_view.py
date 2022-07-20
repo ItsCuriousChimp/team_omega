@@ -11,7 +11,7 @@ class SeatView(APIView):
     def __init__(
         self,
         seat_service: ISeatService = Provide[ServiceContainer.seats_service],
-        ):
+    ) -> None:
         self.seat_service = seat_service
 
     def get(
@@ -26,7 +26,9 @@ class SeatView(APIView):
             seat_availability = request.GET["seat_availability"]
 
         try:
-            seats = self.seat_service.get_seat_by_seat_type(seat_availability, showtime_pk)
+            seats = self.seat_service.get_seat_by_seat_type(
+                seat_availability, showtime_pk
+            )
         except:
             seats = "Invalid Seat Type"
 
