@@ -1,11 +1,9 @@
 from abc import ABC
 from book_my_show.coreapis.models.movie_model import Movie
-from book_my_show.coreapis.repositories.movie_repository import (
-    IMovieRepository,
-    MovieRepository,
-)
+from book_my_show.coreapis.repositories.movie_repository import IMovieRepository
 from book_my_show.containers.repo_container import RepositoryContainer
 from dependency_injector.wiring import inject, Provide
+
 
 class IMovieService(ABC):
     def get_movies_list(self):
@@ -13,15 +11,20 @@ class IMovieService(ABC):
 
 
 class MovieService(IMovieService):
+    def __init__(
+        self,
+        movie_repository: IMovieRepository = Provide[
+            RepositoryContainer.movie_repository
+        ],
+    ) -> None:
+        self.movie_repository = movie_repository
+
     @inject
     def get_movies_list(
         self,
         city_pk: str,
-        movie_repository: IMovieRepository = Provide[
-            RepositoryContainer.movie_repository
-        ],
     ) -> list[dict]:
-        movies_in_city: Movie = movie_repository.get_movies_by_city_id(city_pk)
+        movies_in_city: Movie = self.movie_repository.get_movies_by_city_id(city_pk)
         movies_list = []
 
         for movie in movies_in_city:

@@ -17,16 +17,25 @@ class IBookingService(ABC):
 
 
 class BookingService:
+    def __init__(
+        self,
+        seat_repository: ISeatRepository = Provide[RepositoryContainer.seat_repository],
+        booking_repository: IBookingRepository = Provide[
+            RepositoryContainer.booking_repository
+        ],
+    ) -> None:
+        self.seat_repository = seat_repository
+        self.booking_repository = booking_repository
+
     @inject
     def is_seat_available(
         self,
         showtime_pk: str,
         seat_pk: str,
-        seat_repository: ISeatRepository = Provide[RepositoryContainer.seat_repository],
     ) -> bool:
         all_seats_of_showtime: list[
             dict
-        ] = seat_repository.get_available_seats_by_show_time_id(showtime_pk)
+        ] = self.seat_repository.get_available_seats_by_show_time_id(showtime_pk)
 
         if [
             seat_details
@@ -34,7 +43,6 @@ class BookingService:
             if seat_details["seat_id"] == int(seat_pk)
         ]:
             return True
-
         return False
 
     @inject
@@ -43,14 +51,17 @@ class BookingService:
         user_id: str,
         showtime_id: str,
         seat_id: str,
-        booking_repository: IBookingRepository = Provide[
-            RepositoryContainer.booking_repository
-        ],
     ) -> None:
-        booking_repository.book_seat_by_show_time_id(user_id, showtime_id, seat_id)
+        self.booking_repository.book_seat_by_show_time_id(user_id, showtime_id, seat_id)
 
     @inject
-    def get_booking_response(self, seat_available, user_id, show_id, seat_id):
+    def get_booking_response(
+        self,
+        seat_available: bool,
+        user_id: str,
+        show_id: str,
+        seat_id: str,
+    ) -> dict:
         response_dict = {}
 
         if seat_available:
