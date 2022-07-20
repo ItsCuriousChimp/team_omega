@@ -11,9 +11,9 @@ class CinemaView(APIView):
     def __init__(
         self,
         cinema_service: ICinemaService = Provide[ServiceContainer.cinema_service],
-        ) -> None:
+    ) -> None:
         self.cinema_service = cinema_service
-        
+
     @inject
     def get(
         self,
@@ -21,7 +21,6 @@ class CinemaView(APIView):
         id: str,
     ) -> JsonResponse:
         movie_pk = id
-        print(type(self.cinema_service))
         allcinemas_playing_movies = self.cinema_service.get_cinemas(movie_pk)
-        
+
         return JsonResponse(allcinemas_playing_movies)
