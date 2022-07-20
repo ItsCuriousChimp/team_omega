@@ -1,5 +1,5 @@
 from django.db import connection
-from abc import ABC, abstractmethod  # Built in. No install needed.
+from abc import ABC, abstractmethod
 
 
 class ISeatRepository(ABC):

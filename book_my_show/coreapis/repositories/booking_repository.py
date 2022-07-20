@@ -1,5 +1,5 @@
 from book_my_show.coreapis.models.booking_model import Booking
-from abc import ABC, abstractmethod  # Built in. No install needed.
+from abc import ABC, abstractmethod
 
 
 class IBookingRepository(ABC):

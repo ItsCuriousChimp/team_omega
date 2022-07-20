@@ -1,6 +1,5 @@
-from book_my_show.coreapis.models.city_model import City
 from book_my_show.coreapis.models.movie_model import Movie
-from abc import ABC, abstractmethod  # Built in. No install needed.
+from abc import ABC, abstractmethod
 
 
 class IMovieRepository(ABC):

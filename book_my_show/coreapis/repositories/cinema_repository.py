@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.db import connection
-from abc import ABC, abstractmethod  # Built in. No install needed.
+from abc import ABC, abstractmethod
 
 
 class ICinemaRepository(ABC):
