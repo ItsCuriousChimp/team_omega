@@ -3,7 +3,7 @@ from book_my_show.coreapis.repositories.booking_repository import IBookingReposi
 from book_my_show.coreapis.repositories.seats_repository import ISeatRepository
 from book_my_show.containers.repo_container import RepositoryContainer
 from dependency_injector.wiring import inject, Provide
-
+from rest_framework.authtoken.models import Token
 
 class IBookingService(ABC):
     def is_seat_available(self):
@@ -15,6 +15,8 @@ class IBookingService(ABC):
     def get_booking_response(self):
         pass
 
+    def verify_booking(self):
+        pass
 
 class BookingService:
     def __init__(
@@ -75,5 +77,21 @@ class BookingService:
 
         response_dict["Status"] = booking_status
         response_dict["User_Details"] = str(user_id)
+
+        return response_dict
+
+    def get_user_id(self, user_auth):
+        return Token.objects.get(key=user_auth).user
+        
+    @inject
+    def verify_booking(self, show_id, seat_id, user_auth):
+        availability = self.is_seat_available(show_id, seat_id)
+        user_id = self.get_user_id(user_auth)
+        if availability:
+            self.create_booking(user_id, show_id, seat_id)
+
+        response_dict = self.get_booking_response(
+            availability, user_id, show_id, seat_id
+        )
 
         return response_dict

@@ -8,11 +8,16 @@ from book_my_show.coreapis.services.seats_service import ISeatService
 
 class SeatView(APIView):
     # GET v1/showtimes/<str:id>/seats/
+    def __init__(
+        self,
+        seat_service: ISeatService = Provide[ServiceContainer.seats_service],
+        ):
+        self.seat_service = seat_service
+
     def get(
         self,
         request,
         id: str,
-        seat_service: ISeatService = Provide[ServiceContainer.seats_service],
     ) -> JsonResponse:
         showtime_pk = id
         seat_availability = None
@@ -21,7 +26,7 @@ class SeatView(APIView):
             seat_availability = request.GET["seat_availability"]
 
         try:
-            seats = seat_service.get_seat_by_seat_type(seat_availability, showtime_pk)
+            seats = self.seat_service.get_seat_by_seat_type(seat_availability, showtime_pk)
         except:
             seats = "Invalid Seat Type"
 

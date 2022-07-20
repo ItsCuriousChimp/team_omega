@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from rest_framework.views import APIView
-from rest_framework.authtoken.models import Token
+
 from dependency_injector.wiring import inject, Provide
 from book_my_show.containers.service_container import ServiceContainer
 from rest_framework.permissions import IsAuthenticated
@@ -27,15 +27,7 @@ class BookingView(APIView):
         seat_id: str,
     ) -> JsonResponse:
         authtoken = request.headers.get("Authorization")[6:]
-        user_id = Token.objects.get(key=authtoken).user
-        seat_available = self.booking_service.is_seat_available(show_id, seat_id)
-        response_dict = {}
+        
+        booking_status = self.booking_service.verify_booking(show_id, seat_id, authtoken)
 
-        if seat_available:
-            self.booking_service.create_booking(user_id, show_id, seat_id)
-
-        response_dict = self.booking_service.get_booking_response(
-            seat_available, user_id, show_id, seat_id
-        )
-
-        return JsonResponse(response_dict)
+        return JsonResponse(booking_status)
