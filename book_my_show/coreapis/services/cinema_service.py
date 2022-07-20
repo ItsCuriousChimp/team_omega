@@ -1,4 +1,6 @@
-from book_my_show.coreapis.repositories.cinema_repository import CinemaRepository
+from book_my_show.coreapis.repositories.cinema_repository import (
+    ICinemaRepository,
+)
 
 from dependency_injector.wiring import inject, Provide
 
@@ -6,10 +8,11 @@ from book_my_show.containers.repo_container import RepositoryContainer
 
 
 class CinemaService:
+    @inject
     def get_cinemas(
         self,
         movie_pk: str,
-        cinema_repository: CinemaRepository = Provide[
+        cinema_repository: ICinemaRepository = Provide[
             RepositoryContainer.cinema_repository
         ],
     ) -> dict:

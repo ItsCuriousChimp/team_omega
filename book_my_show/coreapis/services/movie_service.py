@@ -1,5 +1,8 @@
 from book_my_show.coreapis.models.movie_model import Movie
-from book_my_show.coreapis.repositories.movie_repository import MovieRepository
+from book_my_show.coreapis.repositories.movie_repository import (
+    IMovieRepository,
+    MovieRepository,
+)
 from book_my_show.containers.repo_container import RepositoryContainer
 from dependency_injector.wiring import inject, Provide
 
@@ -9,7 +12,7 @@ class MovieService:
     def get_movies_list(
         self,
         city_pk: str,
-        movie_repository: MovieRepository = Provide[
+        movie_repository: IMovieRepository = Provide[
             RepositoryContainer.movie_repository
         ],
     ) -> list[dict]:

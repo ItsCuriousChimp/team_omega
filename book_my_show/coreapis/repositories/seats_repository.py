@@ -1,7 +1,22 @@
 from django.db import connection
+from abc import ABC, abstractmethod  # Built in. No install needed.
 
 
-class SeatRepository:
+class ISeatRepository(ABC):
+    @abstractmethod
+    def get_all_seats_by_show_time_id(self):
+        pass
+
+    @abstractmethod
+    def get_unavailable_seats_by_show_time_id(self):
+        pass
+
+    @abstractmethod
+    def get_available_seats_by_show_time_id(self):
+        pass
+
+
+class SeatRepository(ISeatRepository):
     def get_all_seats_by_show_time_id(self, showtime_pk: str) -> list[dict]:
         cursor = connection.cursor()
         cursor.execute(
