@@ -65,6 +65,8 @@ class BookingService:
         response_dict = {}
 
         if seat_available:
+
+            self.booking_service.create_booking(user_id, show_id, seat_id)
             booking_status = "Congratulations! Seat Booked."
             response_dict["Booking Details"] = {
                 "Show_id": str(show_id),

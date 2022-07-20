@@ -11,11 +11,12 @@ from book_my_show.coreapis.services.booking_service import IBookingService
 class BookingView(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+
     # POST /v1/showtimes/<str:show_id>/seats/<str:seat_id>/
     def __init__(
-        self, 
+        self,
         booking_service: IBookingService = Provide[ServiceContainer.booking_service],
-        ) -> None:
+    ) -> None:
         self.booking_service = booking_service
 
     @inject
@@ -32,12 +33,9 @@ class BookingView(APIView):
 
         if seat_available:
             self.booking_service.create_booking(user_id, show_id, seat_id)
-            response_dict = self.booking_service.get_booking_response(
-                True, user_id, show_id, seat_id
-            )
-        else:
-            response_dict = self.booking_service.get_booking_response(
-                False, user_id, show_id, seat_id
-            )
+
+        response_dict = self.booking_service.get_booking_response(
+            seat_available, user_id, show_id, seat_id
+        )
 
         return JsonResponse(response_dict)

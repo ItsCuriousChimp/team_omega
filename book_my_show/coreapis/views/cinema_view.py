@@ -6,7 +6,6 @@ from book_my_show.coreapis.services.cinema_service import ICinemaService
 
 
 class CinemaView(APIView):
-
     # GET /v1/movies/<str:id>/cinemas/
     def __init__(
         self,

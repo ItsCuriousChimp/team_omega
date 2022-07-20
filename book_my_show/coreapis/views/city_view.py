@@ -10,7 +10,7 @@ class CityView(APIView):
     def __init__(
         self,
         city_service: ICityService = Provide[ServiceContainer.city_service],
-    ):
+    ) -> None:
         self.city_service = city_service
 
     @inject

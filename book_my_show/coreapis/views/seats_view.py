@@ -5,8 +5,8 @@ from dependency_injector.wiring import inject, Provide
 from book_my_show.containers.service_container import ServiceContainer
 from book_my_show.coreapis.services.seats_service import ISeatService
 
-class SeatView(APIView):
 
+class SeatView(APIView):
     # GET v1/showtimes/<str:id>/seats/
     def get(
         self,
@@ -15,14 +15,13 @@ class SeatView(APIView):
         seat_service: ISeatService = Provide[ServiceContainer.seats_service],
     ) -> JsonResponse:
         showtime_pk = id
-        seat_type = None
+        seat_availability = None
 
-        if "seat_type" in request.GET:
-            seat_type = request.GET["seat_type"]
+        if "seat_availability" in request.GET:
+            seat_availability = request.GET["seat_availability"]
 
         try:
-            seats = seat_service.get_seat_by_seat_type(seat_type, showtime_pk)
-
+            seats = seat_service.get_seat_by_seat_type(seat_availability, showtime_pk)
         except:
             seats = "Invalid Seat Type"
 
