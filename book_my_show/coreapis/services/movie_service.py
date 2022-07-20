@@ -19,7 +19,6 @@ class MovieService(IMovieService):
     ) -> None:
         self.movie_repository = movie_repository
 
-    @inject
     def get_movies_list(
         self,
         city_pk: str,

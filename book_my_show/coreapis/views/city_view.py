@@ -13,7 +13,6 @@ class CityView(APIView):
     ) -> None:
         self.city_service = city_service
 
-    @inject
     def get(
         self,
         request,
