@@ -1,0 +1,15 @@
+# Git
+.git
+.gitignore
+
+# Docker
+.docker
+
+# Python
+book_my_show/__pycache__/
+book_my_show/*/__pycache__/
+book_my_show/*/*/__pycache__/
+book_my_show/*/*/*/__pycache__/
+.env
+.venv/
+venv/
