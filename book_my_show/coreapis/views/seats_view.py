@@ -19,7 +19,7 @@ class SeatView(APIView):
         request,
         id: str,
     ) -> JsonResponse:
-        showtime_pk = id
+        showtime_id = id
         seat_availability = None
 
         if "seat_availability" in request.GET:
@@ -27,7 +27,7 @@ class SeatView(APIView):
 
         try:
             seats = self.seat_service.get_seat_by_seat_type(
-                seat_availability, showtime_pk
+                seat_availability, showtime_id
             )
         except:
             seats = "Invalid Seat Type"

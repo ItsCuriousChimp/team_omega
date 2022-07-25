@@ -5,7 +5,7 @@ from book_my_show.common.models.base_model import BaseModel
 
 class Cinema(BaseModel):
     name = models.CharField(max_length=32)
-    city_id = models.ForeignKey(City, on_delete=models.CASCADE)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return str(self.name)

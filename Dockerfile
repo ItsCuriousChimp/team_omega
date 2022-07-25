@@ -6,7 +6,7 @@ COPY ./requirements.txt .
 
 WORKDIR /team_omega
 
-ADD . /team_omega/
+COPY . .
 
 RUN python -m venv venv && \
     pip install --upgrade pip && \

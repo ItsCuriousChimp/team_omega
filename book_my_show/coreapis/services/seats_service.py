@@ -27,41 +27,41 @@ class SeatService(ISeatService):
 
     def get_all_seats(
         self,
-        showtime_pk: str,
+        showtime_id: str,
     ) -> list[dict]:
         all_seats_of_showtime = self.seat_repository.get_all_seats_by_show_time_id(
-            showtime_pk
+            showtime_id
         )
 
         return all_seats_of_showtime
 
     def get_unavailable_seats(
         self,
-        showtime_pk: str,
+        showtime_id: str,
     ) -> list[dict]:
         unavailable_seat_of_showtime: list[
             dict
-        ] = self.seat_repository.get_unavailable_seats_by_show_time_id(showtime_pk)
+        ] = self.seat_repository.get_unavailable_seats_by_show_time_id(showtime_id)
 
         return unavailable_seat_of_showtime
 
     def get_seat_available(
         self,
-        showtime_pk: str,
+        showtime_id: str,
     ) -> list[dict]:
         available_seat_of_showtime: list[
             dict
-        ] = self.seat_repository.get_available_seats_by_show_time_id(showtime_pk)
+        ] = self.seat_repository.get_available_seats_by_show_time_id(showtime_id)
 
         return available_seat_of_showtime
 
-    def get_seat_by_seat_type(self, seat_type, showtime_pk: str) -> list[dict]:
+    def get_seat_by_seat_type(self, seat_type, showtime_id: str) -> list[dict]:
 
         if not seat_type:
-            seats = self.get_all_seats(showtime_pk)
+            seats = self.get_all_seats(showtime_id)
         elif seat_type == "available":
-            seats = self.get_seat_available(showtime_pk)
+            seats = self.get_seat_available(showtime_id)
         elif seat_type == "unavailable":
-            seats = self.get_unavailable_seats(showtime_pk)
+            seats = self.get_unavailable_seats(showtime_id)
 
         return seats

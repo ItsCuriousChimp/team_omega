@@ -12,6 +12,7 @@ services:
       - "5432:5432"
 
   api:
+    image: 641128561021.dkr.ecr.us-east-1.amazonaws.com/team_omega:latest
     build: .
     command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     container_name: team_omega_c

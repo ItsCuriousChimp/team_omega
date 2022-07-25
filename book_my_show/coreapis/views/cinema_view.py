@@ -18,7 +18,7 @@ class CinemaView(APIView):
         request,
         id: str,
     ) -> JsonResponse:
-        movie_pk = id
-        allcinemas_playing_movies = self.cinema_service.get_cinemas(movie_pk)
+        movie_id = id
+        allcinemas_playing_movies = self.cinema_service.get_cinemas(movie_id)
 
         return JsonResponse(allcinemas_playing_movies)

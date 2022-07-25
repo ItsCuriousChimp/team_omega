@@ -10,20 +10,22 @@ class ICinemaRepository(ABC):
 
 
 class CinemaRepository(ICinemaRepository):
-    def get_cinemas_by_movie_id(self, movie_pk: str) -> dict:
+    def get_cinemas_by_movie_id(self, movie_id: str) -> dict:
         cursor = connection.cursor()
         cursor.execute(
             """Select s.id as showtime_id, s.start_time_at_utc, s.end_time_at_utc, 
                 m.name as movie_name, c.name as cinema_name, c.id as cinema_id
                             From coreapis_ShowTime as s 
                             INNER JOIN coreapis_Movie as m
-                                ON m.id = s.movie_id_id
+                                ON m.id = s.movie_id
                             INNER JOIN coreapis_CinemaScreen as sc 
-                                ON s.cinema_screen_id_id = sc.id
+                                ON s.cinema_screen_id = sc.id
                             INNER JOIN coreapis_Cinema as c
-                                ON sc.cinema_id_id = c.id
-                            WHERE s.movie_id_id= %s  AND s.deleted IS NULL AND s.start_time_at_utc >= %s""",
-            [movie_pk, datetime.now()],
+                                ON sc.cinema_id = c.id
+                            WHERE s.movie_id= %s  
+                            AND s.deleted IS NULL 
+                            AND s.start_time_at_utc >= %s""",
+            [movie_id, datetime.now()],
         )
         data: dict = self.dictfetchall(cursor)
         return data

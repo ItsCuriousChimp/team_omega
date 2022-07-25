@@ -32,17 +32,17 @@ class BookingService:
 
     def is_seat_available(
         self,
-        showtime_pk: str,
-        seat_pk: str,
+        showtime_id: str,
+        seat_id: str,
     ) -> bool:
         all_seats_of_showtime: list[
             dict
-        ] = self.seat_repository.get_available_seats_by_show_time_id(showtime_pk)
+        ] = self.seat_repository.get_available_seats_by_show_time_id(showtime_id)
 
         if [
             seat_details
             for seat_details in all_seats_of_showtime
-            if seat_details["seat_id"] == int(seat_pk)
+            if seat_details["seat_id"] == int(seat_id)
         ]:
             return True
         return False
