@@ -7,8 +7,8 @@ from book_my_show.common.models.base_model import BaseModel
 class Showtime(BaseModel):
     start_time_at_utc = models.DateTimeField()
     end_time_at_utc = models.DateTimeField()
-    movie_id = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    cinema_screen_id = models.ForeignKey(CinemaScreen, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    cinema_screen = models.ForeignKey(CinemaScreen, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return str(str(self.movie_id) + " " + str(self.cinema_screen_id))
+        return str(str(self.movie) + " " + str(self.cinema_screen))

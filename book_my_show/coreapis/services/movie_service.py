@@ -21,9 +21,9 @@ class MovieService(IMovieService):
 
     def get_movies_list(
         self,
-        city_pk: str,
+        city_id: str,
     ) -> list[dict]:
-        movies_in_city: Movie = self.movie_repository.get_movies_by_city_id(city_pk)
+        movies_in_city: Movie = self.movie_repository.get_movies_by_city_id(city_id)
         movies_list = []
 
         for movie in movies_in_city:

@@ -27,7 +27,6 @@ class Settings(Configuration):
         "book_my_show.coreapis",
         "rest_framework.authtoken",
         "safedelete",
-        # "django_injector",
     ]
 
     MIDDLEWARE = [
@@ -39,7 +38,6 @@ class Settings(Configuration):
         "django.contrib.messages.middleware.MessageMiddleware",
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
         "book_my_show.middlewares.exception_handler_middleware.ExceptionHandlerMiddleware",
-        # "django_injector.inject_request_middleware",
     ]
 
     ROOT_URLCONF = "book_my_show.urls"

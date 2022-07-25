@@ -6,7 +6,7 @@ from rest_framework.authtoken.models import Token
 class IBookingRepository(ABC):
     @abstractmethod
     def book_seat_by_show_time_id(self):
-        pass
+        raise NotImplementedError("Abstract method not implemented.")
 
 
 class BookingRepository(IBookingRepository):

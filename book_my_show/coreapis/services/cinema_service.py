@@ -20,10 +20,10 @@ class CinemaService:
 
     def get_cinemas(
         self,
-        movie_pk: str,
+        movie_id: str,
     ) -> dict:
         allcinemas_playing_movies: dict = (
-            self.cinema_repository.get_cinemas_by_movie_id(movie_pk)
+            self.cinema_repository.get_cinemas_by_movie_id(movie_id)
         )
 
         return allcinemas_playing_movies
