@@ -6,13 +6,13 @@ from book_my_show.coreapis.services.cinema_service import ICinemaService
 
 
 class CinemaView(APIView):
-    # GET /v1/movies/<str:id>/cinemas/
     def __init__(
         self,
         cinema_service: ICinemaService = Provide[ServiceContainer.cinema_service],
     ) -> None:
         self.cinema_service = cinema_service
 
+    # GET /v1/movies/<str:id>/cinemas/
     def get(
         self,
         request,

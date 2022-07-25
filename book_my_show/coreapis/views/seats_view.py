@@ -7,13 +7,13 @@ from book_my_show.coreapis.services.seats_service import ISeatService
 
 
 class SeatView(APIView):
-    # GET v1/showtimes/<str:id>/seats/
     def __init__(
         self,
         seat_service: ISeatService = Provide[ServiceContainer.seats_service],
     ) -> None:
         self.seat_service = seat_service
 
+    # GET v1/showtimes/<str:id>/seats/
     def get(
         self,
         request,

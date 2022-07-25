@@ -5,15 +5,15 @@ from abc import ABC, abstractmethod
 class ISeatRepository(ABC):
     @abstractmethod
     def get_all_seats_by_show_time_id(self):
-        pass
+        raise NotImplementedError("Abstract method not implemented.")
 
     @abstractmethod
     def get_unavailable_seats_by_show_time_id(self):
-        pass
+        raise NotImplementedError("Abstract method not implemented.")
 
     @abstractmethod
     def get_available_seats_by_show_time_id(self):
-        pass
+        raise NotImplementedError("Abstract method not implemented.")
 
 
 class SeatRepository(ISeatRepository):

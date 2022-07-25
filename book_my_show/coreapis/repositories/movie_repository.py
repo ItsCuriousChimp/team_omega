@@ -5,7 +5,7 @@ from abc import ABC, abstractmethod
 class IMovieRepository(ABC):
     @abstractmethod
     def get_movies_by_city_id(self):
-        pass
+        raise NotImplementedError("Abstract method not implemented.")
 
 
 class MovieRepository(IMovieRepository):

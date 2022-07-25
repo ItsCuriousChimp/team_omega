@@ -6,7 +6,7 @@ from abc import ABC, abstractmethod
 class ICinemaRepository(ABC):
     @abstractmethod
     def get_cinemas_by_movie_id(self):
-        pass
+        raise NotImplementedError("Abstract method not implemented.")
 
 
 class CinemaRepository(ICinemaRepository):
