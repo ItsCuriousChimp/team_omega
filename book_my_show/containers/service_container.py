@@ -6,6 +6,8 @@ from book_my_show.coreapis.services import (
     movie_service,
     seats_service,
 )
+from book_my_show.authenticate.services import user_service
+
 
 
 class ServiceContainer(containers.DeclarativeContainer):
@@ -16,6 +18,7 @@ class ServiceContainer(containers.DeclarativeContainer):
             "book_my_show.coreapis.views.city_view",
             "book_my_show.coreapis.views.movie_view",
             "book_my_show.coreapis.views.seats_view",
+            "book_my_show.authenticate.views.register_user_view",
         ],
     )
 
@@ -24,3 +27,4 @@ class ServiceContainer(containers.DeclarativeContainer):
     city_service = providers.Factory(city_service.CityService)
     movie_service = providers.Factory(movie_service.MovieService)
     seats_service = providers.Factory(seats_service.SeatService)
+    register_service = providers.Factory(user_service.UserService)
