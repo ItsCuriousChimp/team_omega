@@ -1,5 +1,4 @@
 from django.http import JsonResponse
-from requests import Response
 from rest_framework.views import APIView
 from book_my_show.containers.service_container import ServiceContainer
 from dependency_injector.wiring import Provide
