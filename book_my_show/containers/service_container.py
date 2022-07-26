@@ -1,12 +1,10 @@
 from dependency_injector import containers, providers
-from book_my_show.coreapis.services import (
-    booking_service,
-    cinema_service,
-    city_service,
-    movie_service,
-    seats_service,
-)
-from book_my_show.authenticate.services import user_service
+from book_my_show.authenticate.services.user_service import IUserService, UserService
+from book_my_show.coreapis.services.booking_service import IBookingService, BookingService
+from book_my_show.coreapis.services.cinema_service import ICinemaService, CinemaService
+from book_my_show.coreapis.services.city_service import ICityService, CityService
+from book_my_show.coreapis.services.movie_service import IMovieService, MovieService
+from book_my_show.coreapis.services.seats_service import ISeatService, SeatService
 
 
 
@@ -22,9 +20,9 @@ class ServiceContainer(containers.DeclarativeContainer):
         ],
     )
 
-    cinema_service = providers.Factory(cinema_service.CinemaService)
-    booking_service = providers.Factory(booking_service.BookingService)
-    city_service = providers.Factory(city_service.CityService)
-    movie_service = providers.Factory(movie_service.MovieService)
-    seats_service = providers.Factory(seats_service.SeatService)
-    register_service = providers.Factory(user_service.UserService)
+    cinema_service: ICinemaService  = providers.Factory(CinemaService)
+    booking_service: IBookingService = providers.Factory(BookingService)
+    city_service: ICityService = providers.Factory(CityService)
+    movie_service: IMovieService = providers.Factory(MovieService)
+    seats_service: ISeatService  = providers.Factory(SeatService)
+    register_service: IUserService = providers.Factory(UserService)

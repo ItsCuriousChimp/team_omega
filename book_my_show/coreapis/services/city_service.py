@@ -1,8 +1,9 @@
 from abc import ABC, abstractmethod
-from book_my_show.coreapis.models.city_model import City
 from book_my_show.coreapis.repositories.city_repository import ICityRepository
 from book_my_show.containers.repo_container import RepositoryContainer
 from dependency_injector.wiring import Provide
+
+from book_my_show.coreapis.dtos.city_model_dto import CityModelDto
 
 
 class ICityService(ABC):
@@ -19,14 +20,7 @@ class CityService(ICityService):
 
     def fetch_city_list(
         self,
-    ) -> list[dict]:
-        city_list: City = self.city_repository.get_city_list()
-        cities_details = []
+    ) -> list[CityModelDto]:
+        city_dto_list: list[CityModelDto] = self.city_repository.get_city_list()
 
-        for city in city_list:
-            detail = {}
-            detail["id"] = str(city.id)
-            detail["City_Name"] = str(city)
-            cities_details.append(detail)
-
-        return cities_details
+        return city_dto_list
