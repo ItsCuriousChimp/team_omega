@@ -8,7 +8,7 @@ class Settings(Configuration):
 
     BASE_DIR = Path(__file__).resolve().parent.parent
 
-    SECRET_KEY = "django-insecure-=g7p*++&z$tv*^6a@9^v1fm)4+-+xe5pjc&#yo6e3qpo1&36o4"
+    SECRET_KEY = os.environ.get("SECRET_KEY")
 
     DEBUG = False
 
@@ -27,7 +27,6 @@ class Settings(Configuration):
         "book_my_show.coreapis",
         "rest_framework.authtoken",
         "safedelete",
-        # "django_injector",
     ]
 
     MIDDLEWARE = [
@@ -39,7 +38,6 @@ class Settings(Configuration):
         "django.contrib.messages.middleware.MessageMiddleware",
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
         "book_my_show.middlewares.exception_handler_middleware.ExceptionHandlerMiddleware",
-        # "django_injector.inject_request_middleware",
     ]
 
     ROOT_URLCONF = "book_my_show.urls"
@@ -72,7 +70,7 @@ class Settings(Configuration):
             "USER": os.environ.get("DB_USER"),
             "PASSWORD": os.environ.get("DB_PASSWORD"),
             "HOST": os.environ.get("DB_HOST"),
-            # "PORT": os.environ.get("DB_PORT"),
+            "PORT": os.environ.get("DB_PORT"),
         }
     }
 
