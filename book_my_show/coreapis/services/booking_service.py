@@ -1,25 +1,29 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 from book_my_show.coreapis.repositories.booking_repository import IBookingRepository
 from book_my_show.coreapis.repositories.seats_repository import ISeatRepository
 from book_my_show.containers.repo_container import RepositoryContainer
-from dependency_injector.wiring import inject, Provide
+from dependency_injector.wiring import Provide
 
 
 class IBookingService(ABC):
+    @abstractmethod
     def is_seat_available(self):
-        pass
+        raise NotImplementedError("Abstract method not implemented.")
 
+    @abstractmethod
     def create_booking(self):
-        pass
+        raise NotImplementedError("Abstract method not implemented.")
 
+    @abstractmethod
     def get_booking_response(self):
-        pass
+        raise NotImplementedError("Abstract method not implemented.")
 
+    @abstractmethod
     def verify_booking(self):
-        pass
+        raise NotImplementedError("Abstract method not implemented.")
 
 
-class BookingService:
+class BookingService(IBookingService):
     def __init__(
         self,
         seat_repository: ISeatRepository = Provide[RepositoryContainer.seat_repository],
@@ -32,17 +36,17 @@ class BookingService:
 
     def is_seat_available(
         self,
-        showtime_pk: str,
-        seat_pk: str,
+        showtime_id: str,
+        seat_id: str,
     ) -> bool:
         all_seats_of_showtime: list[
             dict
-        ] = self.seat_repository.get_available_seats_by_show_time_id(showtime_pk)
+        ] = self.seat_repository.get_available_seats_by_show_time_id(showtime_id)
 
         if [
             seat_details
             for seat_details in all_seats_of_showtime
-            if seat_details["seat_id"] == int(seat_pk)
+            if seat_details["seat_id"] == int(seat_id)
         ]:
             return True
         return False

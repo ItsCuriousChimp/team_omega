@@ -7,7 +7,7 @@ class Movie(BaseModel):
     name = models.CharField(max_length=32)
     description = models.TextField()
     release_date = models.DateField()
-    cinema_id = models.ManyToManyField(Cinema)
+    cinema = models.ManyToManyField(Cinema)
 
     def __str__(self) -> str:
         return str(self.name)

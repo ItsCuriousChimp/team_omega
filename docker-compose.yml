@@ -2,7 +2,6 @@ version: '3'
 services:
   db:
     image: postgres
-    restart: always
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
@@ -10,10 +9,8 @@ services:
     volumes:
       - dev-db-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
-
+      - "5433:5432"
   api:
-    image: 641128561021.dkr.ecr.us-east-1.amazonaws.com/bmk:latest
     build: .
     command: sh -c "python manage.py runserver 0.0.0.0:8000"
     container_name: team_omega_c

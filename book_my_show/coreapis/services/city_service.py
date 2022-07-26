@@ -1,14 +1,14 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 from book_my_show.coreapis.models.city_model import City
 from book_my_show.coreapis.repositories.city_repository import ICityRepository
 from book_my_show.containers.repo_container import RepositoryContainer
-from dependency_injector.wiring import inject, Provide
+from dependency_injector.wiring import Provide
 
 
 class ICityService(ABC):
+    @abstractmethod
     def fetch_city_list(self):
-        pass
-
+        raise NotImplementedError("Abstract method not implemented.")
 
 class CityService(ICityService):
     def __init__(

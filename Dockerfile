@@ -1,7 +1,5 @@
 FROM python:3.10.5-alpine3.16
-
 ENV PYTHONUNBUFFERED 1
-
 WORKDIR /team_omega
 
 COPY ./requirements.txt ./requirements.txt
