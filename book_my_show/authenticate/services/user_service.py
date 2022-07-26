@@ -7,18 +7,19 @@ from book_my_show.containers.repo_container import RepositoryContainer
 from dependency_injector.wiring import Provide
 
 
-
 class IUserService(ABC):
     @abstractmethod
     def create_user(self):
-        raise NotImplementedError('Abstract method not implemented.')
+        raise NotImplementedError("Abstract method not implemented.")
 
 
 class UserService(IUserService):
     def __init__(
         self,
-        register_user_repo: IUserRepository = Provide[RepositoryContainer.user_repository],
-        ) -> None:
+        register_user_repo: IUserRepository = Provide[
+            RepositoryContainer.user_repository
+        ],
+    ) -> None:
         self.register_user_repo = register_user_repo
 
     def create_user(self, serializer: UserSerializer) -> json:

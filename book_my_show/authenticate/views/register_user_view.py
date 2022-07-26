@@ -6,13 +6,16 @@ from book_my_show.authenticate.serializers.user_serializer import UserSerializer
 from book_my_show.containers.service_container import ServiceContainer
 from dependency_injector.wiring import Provide
 
+
 class RegisterUserView(APIView):
     def __init__(
         self,
-        register_user_service: IUserService = Provide[ServiceContainer.register_service],
-        ) -> None:
+        register_user_service: IUserService = Provide[
+            ServiceContainer.register_service
+        ],
+    ) -> None:
         self.register_user_service = register_user_service
-        
+
     # POST /v1/register
     def post(self, request) -> JsonResponse:
 

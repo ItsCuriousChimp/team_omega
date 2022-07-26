@@ -10,6 +10,7 @@ class ICityService(ABC):
     def fetch_city_list(self):
         raise NotImplementedError("Abstract method not implemented.")
 
+
 class CityService(ICityService):
     def __init__(
         self,
