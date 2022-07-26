@@ -9,7 +9,6 @@ from book_my_show.coreapis.services import (
 from book_my_show.authenticate.services import user_service
 
 
-
 class ServiceContainer(containers.DeclarativeContainer):
     wiring_config = containers.WiringConfiguration(
         modules=[
