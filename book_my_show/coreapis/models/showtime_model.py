@@ -12,3 +12,6 @@ class Showtime(BaseModel):
 
     def __str__(self) -> str:
         return str(str(self.movie) + " " + str(self.cinema_screen))
+
+    def delete(self):
+        Showtime.objects.update(is_deleted=True)

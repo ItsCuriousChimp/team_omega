@@ -10,6 +10,7 @@ class ICityRepository(ABC):
 
 class CityRepository(ICityRepository):
     def get_city_list(self) -> City:
-        city_list = City.objects.all()
+        city_list = City.objects.filter(is_deleted=False)
+        print(city_list)
 
         return city_list

@@ -9,3 +9,6 @@ class Seat(BaseModel):
 
     def __str__(self) -> str:
         return str(str(self.cinema_screen) + " " + str(self.pk))
+
+    def delete(self):
+        Seat.objects.update(is_deleted=True)

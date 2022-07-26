@@ -7,6 +7,7 @@ import os
 class Settings(Configuration):
 
     BASE_DIR = Path(__file__).resolve().parent.parent
+    STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
     SECRET_KEY = os.environ.get("SECRET_KEY")
 
