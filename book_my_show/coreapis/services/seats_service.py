@@ -1,21 +1,25 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 from book_my_show.coreapis.repositories.seats_repository import ISeatRepository
-from dependency_injector.wiring import inject, Provide
+from dependency_injector.wiring import Provide
 from book_my_show.containers.repo_container import RepositoryContainer
 
 
 class ISeatService(ABC):
+    @abstractmethod
     def get_all_seats(self):
-        pass
+        raise NotImplementedError("Abstract method not implemented.")
 
+    @abstractmethod
     def get_unavailable_seats(self):
-        pass
+        raise NotImplementedError("Abstract method not implemented.")
 
+    @abstractmethod
     def get_seat_available(self):
-        pass
+        raise NotImplementedError("Abstract method not implemented.")
 
+    @abstractmethod
     def get_seat_by_seat_type(self):
-        pass
+        raise NotImplementedError("Abstract method not implemented.")
 
 
 class SeatService(ISeatService):

@@ -1,13 +1,14 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 from book_my_show.coreapis.models.movie_model import Movie
 from book_my_show.coreapis.repositories.movie_repository import IMovieRepository
 from book_my_show.containers.repo_container import RepositoryContainer
-from dependency_injector.wiring import inject, Provide
+from dependency_injector.wiring import Provide
 
 
 class IMovieService(ABC):
+    @abstractmethod
     def get_movies_list(self):
-        pass
+        raise NotImplementedError("Abstract method not implemented.")
 
 
 class MovieService(IMovieService):
