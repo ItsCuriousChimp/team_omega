@@ -8,7 +8,7 @@ class Settings(Configuration):
 
     BASE_DIR = Path(__file__).resolve().parent.parent
 
-    SECRET_KEY = "django-insecure-=g7p*++&z$tv*^6a@9^v1fm)4+-+xe5pjc&#yo6e3qpo1&36o4"
+    SECRET_KEY = os.environ.get("SECRET_KEY")
 
     DEBUG = False
 
