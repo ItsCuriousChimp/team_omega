@@ -1,6 +1,7 @@
 from datetime import datetime
 from django.db import connection
 from abc import ABC, abstractmethod
+from book_my_show.coreapis.dtos.cinema_dto import CinemaDto
 
 
 class ICinemaRepository(ABC):
@@ -10,7 +11,7 @@ class ICinemaRepository(ABC):
 
 
 class CinemaRepository(ICinemaRepository):
-    def get_cinemas_by_movie_id(self, movie_id: str) -> dict:
+    def get_cinemas_by_movie_id(self, movie_id: str) -> dict[list[CinemaDto]]:
         cursor = connection.cursor()
         cursor.execute(
             """Select s.id as showtime_id, s.start_time_at_utc, s.end_time_at_utc, 
@@ -27,20 +28,34 @@ class CinemaRepository(ICinemaRepository):
                             AND s.start_time_at_utc >= %s""",
             [movie_id, datetime.now()],
         )
-        data: dict = self.dictfetchall(cursor)
+        data: dict[list[CinemaDto]] = self.get_cinemas_grouped_by_id(cursor)
         return data
 
-    def dictfetchall(self, cursor) -> dict:
-        columns = [col[0] for col in cursor.description]
-        dict_cinema = [dict(zip(columns, row)) for row in cursor.fetchall()]
-
+    def get_cinemas_grouped_by_id(self, cursor) -> dict[list[CinemaDto]]:
+        list_cinemas: list[CinemaDto] = self.get_cinema_dtos_list(cursor)
         groupby_cinema: dict = {}
 
-        for cinema in dict_cinema:
-            if cinema["cinema_id"] in groupby_cinema:
-                groupby_cinema[cinema["cinema_id"]].append(cinema)
-
+        for cinema in list_cinemas:
+            if cinema.cinema_id in groupby_cinema:
+                groupby_cinema[cinema.cinema_id].append(cinema)
             else:
-                groupby_cinema[cinema["cinema_id"]] = [cinema]
+                groupby_cinema[cinema.cinema_id] = [cinema]
 
         return groupby_cinema
+
+    def get_cinema_dtos_list(self, cursor) -> CinemaDto:
+        columns = [col[0] for col in cursor.description]
+        list_cinema = []
+
+        for row in cursor.fetchall():
+            cinema_dto_obj = CinemaDto(
+                showtime_id=row[columns.index("showtime_id")],
+                start_time_at_utc=row[columns.index("start_time_at_utc")],
+                end_time_at_utc=row[columns.index("end_time_at_utc")],
+                movie_name=row[columns.index("movie_name")],
+                cinema_name=row[columns.index("cinema_name")],
+                cinema_id=row[columns.index("cinema_id")],
+            )
+            list_cinema.append(cinema_dto_obj)
+
+        return list_cinema

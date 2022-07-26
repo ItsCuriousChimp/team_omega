@@ -20,9 +20,11 @@ from book_my_show.coreapis.repositories.seats_repository import (
     SeatRepository,
 )
 from book_my_show.authenticate.repositories.user_repository import (
-    IUserRepository, 
-    UserRepository
+    IUserRepository,
+    UserRepository,
 )
+
+
 class RepositoryContainer(containers.DeclarativeContainer):
     wiring_config = containers.WiringConfiguration(
         modules=[
