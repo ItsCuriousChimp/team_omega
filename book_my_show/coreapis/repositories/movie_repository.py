@@ -11,6 +11,8 @@ class IMovieRepository(ABC):
 class MovieRepository(IMovieRepository):
     def get_movies_by_city_id(self, city_id: str) -> Movie:
 
-        movie_model = Movie.objects.all().filter(cinema__city_id=int(city_id))
+        movie_model = (
+            Movie.objects.all().filter(cinema__city_id=int(city_id)).distinct()
+        )
 
         return movie_model
