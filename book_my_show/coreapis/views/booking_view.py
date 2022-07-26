@@ -1,6 +1,5 @@
 from django.http import JsonResponse
 from rest_framework.views import APIView
-
 from dependency_injector.wiring import Provide
 from book_my_show.containers.service_container import ServiceContainer
 from rest_framework.permissions import IsAuthenticated

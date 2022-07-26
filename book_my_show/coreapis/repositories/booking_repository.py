@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from book_my_show.coreapis.models.booking_model import Booking
+from book_my_show.authenticate.models.user_model import UserModel
 from rest_framework.authtoken.models import Token
 
 
@@ -16,5 +17,5 @@ class BookingRepository(IBookingRepository):
         booking = Booking.objects.create_booking(user_id, show_time_id, seat_id)
         booking.save()
 
-    def get_user_id_by_auth_token(self, user_auth: str) -> Booking:
+    def get_user_id_by_auth_token(self, user_auth: str) -> UserModel:
         return Token.objects.get(key=user_auth).user

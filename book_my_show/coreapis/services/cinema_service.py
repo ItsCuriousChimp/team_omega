@@ -6,7 +6,7 @@ from book_my_show.containers.repo_container import RepositoryContainer
 
 class ICinemaService(ABC):
     @abstractmethod
-    def get_cinema(self):
+    def get_cinemas(self):
         raise NotImplementedError("Abstract method not implemented.")
 
 
