@@ -26,6 +26,8 @@ class MovieService(IMovieService):
         self,
         city_id: str,
     ) -> list[dict]:
-        movies_in_city: MovieModelDto = self.movie_repository.get_movies_by_city_id(city_id)
+        movies_in_city: MovieModelDto = self.movie_repository.get_movies_by_city_id(
+            city_id
+        )
 
         return movies_in_city

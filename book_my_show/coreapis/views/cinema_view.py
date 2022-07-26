@@ -21,7 +21,9 @@ class CinemaView(APIView):
         id: str,
     ) -> JsonResponse:
         movie_id = id
-        allcinemas_playing_movies = self.cinema_service.get_cinemas(movie_id)
+        allcinemas_playing_movies: dict[
+            list[CinemaDto]
+        ] = self.cinema_service.get_cinemas(movie_id)
 
         dict_response = self.DictResponse(allcinemas_playing_movies)
 

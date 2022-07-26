@@ -20,12 +20,11 @@ class CityView(APIView):
     ) -> JsonResponse:
         city_list: list[CityModelDto] = self.city_service.fetch_city_list()
         cities_details: list[dict] = []
+
         for city in city_list:
             detail = {}
             detail["id"] = city.id
             detail["City_Name"] = city.name
             cities_details.append(detail)
-        return JsonResponse(
-            cities_details, 
-            safe=False
-        )
+
+        return JsonResponse(cities_details, safe=False)

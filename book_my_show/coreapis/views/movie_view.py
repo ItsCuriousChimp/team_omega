@@ -21,13 +21,11 @@ class MovieList(APIView):
     ) -> JsonResponse:
         movies_list: MovieModelDto = self.movie_service.get_movies_list(id)
         movies_details_list: list[dict] = []
+
         for movie in movies_list:
             movie_details = {}
             movie_details["Name"] = movie.name
             movie_details["Id"] = movie.id
             movies_details_list.append(movie_details)
 
-        return JsonResponse(
-            movies_details_list, 
-            safe=False
-            )
+        return JsonResponse(movies_details_list, safe=False)

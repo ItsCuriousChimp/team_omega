@@ -10,6 +10,7 @@ from book_my_show.coreapis.services.booking_service import IBookingService
 class BookingView(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+
     def __init__(
         self,
         booking_service: IBookingService = Provide[ServiceContainer.booking_service],

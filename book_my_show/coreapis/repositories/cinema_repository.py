@@ -43,7 +43,7 @@ class CinemaRepository(ICinemaRepository):
 
         return groupby_cinema
 
-    def get_cinema_dtos_list(self, cursor) -> CinemaDto:
+    def get_cinema_dtos_list(self, cursor) -> list[CinemaDto]:
         columns = [col[0] for col in cursor.description]
         list_cinema = []
 
