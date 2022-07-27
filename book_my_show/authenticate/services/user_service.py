@@ -20,7 +20,7 @@ class UserService(IUserService):
             RepositoryContainer.user_repository
         ],
     ) -> None:
-        self.register_user_repo = register_user_repo
+        self.register_user_repo: IUserRepository = register_user_repo
 
     def create_user(self, serializer: UserSerializer) -> json:
         resp: json = {}
@@ -29,7 +29,7 @@ class UserService(IUserService):
         last_name: str = serializer.validated_data["last_name"]
         full_name: str = ""
         if first_name or last_name:
-            full_name: str = first_name + last_name
+            full_name = first_name + last_name
 
         self.register_user_repo.create_user_db(serializer)
 

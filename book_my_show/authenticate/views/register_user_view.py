@@ -14,12 +14,12 @@ class RegisterUserView(APIView):
             ServiceContainer.register_service
         ],
     ) -> None:
-        self.register_user_service = register_user_service
+        self.register_user_service: IUserService = register_user_service
 
     # POST /v1/register
     def post(self, request) -> JsonResponse:
 
-        serializer = UserSerializer(data=request.data)
+        serializer: UserSerializer = UserSerializer(data=request.data)
 
         if serializer.is_valid():
             resp: json = self.register_user_service.create_user(serializer)
