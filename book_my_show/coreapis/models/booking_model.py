@@ -23,6 +23,3 @@ class Booking(BaseModel):
 
     def __str__(self) -> str:
         return str(str(self.user) + " " + str(self.show_time))
-
-    def delete(self):
-        Booking.objects.update(is_deleted=True)

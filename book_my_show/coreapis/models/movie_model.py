@@ -11,6 +11,3 @@ class Movie(BaseModel):
 
     def __str__(self) -> str:
         return str(self.name)
-
-    def delete(self):
-        Movie.objects.update(is_deleted=True)

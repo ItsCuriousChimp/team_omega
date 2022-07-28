@@ -9,6 +9,3 @@ class CinemaScreen(BaseModel):
 
     def __str__(self) -> str:
         return str(str(self.cinema) + " screen:" + str(self.screen_no))
-
-    def delete(self):
-        CinemaScreen.objects.update(is_deleted=True)

@@ -7,8 +7,3 @@ class City(BaseModel):
 
     def __str__(self) -> str:
         return str(self.name)
-
-    def delete(self):
-        # print(self.)
-        print(self.name)
-        self.update(is_deleted=True)
