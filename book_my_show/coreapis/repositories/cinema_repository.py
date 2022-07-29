@@ -19,7 +19,7 @@ class CinemaRepository(ICinemaRepository):
     def get_cinemas_by_movie_id(self, movie_id: str) -> dict[list[CinemaDto]]:
         test1 = Showtime.objects.filter(movie_id=movie_id)
         d = ShowtimeSerialiser(test1, many=True).data
-        print(d)
+        # print(d)
 
         cursor = connection.cursor()
         cursor.execute(
