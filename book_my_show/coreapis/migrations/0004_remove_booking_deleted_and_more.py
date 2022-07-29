@@ -6,99 +6,99 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('coreapis', '0003_rename_seat_id_booking_seat_and_more'),
+        ("coreapis", "0003_rename_seat_id_booking_seat_and_more"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='booking',
-            name='deleted',
+            model_name="booking",
+            name="deleted",
         ),
         migrations.RemoveField(
-            model_name='booking',
-            name='deleted_by_cascade',
+            model_name="booking",
+            name="deleted_by_cascade",
         ),
         migrations.RemoveField(
-            model_name='cinema',
-            name='deleted',
+            model_name="cinema",
+            name="deleted",
         ),
         migrations.RemoveField(
-            model_name='cinema',
-            name='deleted_by_cascade',
+            model_name="cinema",
+            name="deleted_by_cascade",
         ),
         migrations.RemoveField(
-            model_name='cinemascreen',
-            name='deleted',
+            model_name="cinemascreen",
+            name="deleted",
         ),
         migrations.RemoveField(
-            model_name='cinemascreen',
-            name='deleted_by_cascade',
+            model_name="cinemascreen",
+            name="deleted_by_cascade",
         ),
         migrations.RemoveField(
-            model_name='city',
-            name='deleted',
+            model_name="city",
+            name="deleted",
         ),
         migrations.RemoveField(
-            model_name='city',
-            name='deleted_by_cascade',
+            model_name="city",
+            name="deleted_by_cascade",
         ),
         migrations.RemoveField(
-            model_name='movie',
-            name='deleted',
+            model_name="movie",
+            name="deleted",
         ),
         migrations.RemoveField(
-            model_name='movie',
-            name='deleted_by_cascade',
+            model_name="movie",
+            name="deleted_by_cascade",
         ),
         migrations.RemoveField(
-            model_name='seat',
-            name='deleted',
+            model_name="seat",
+            name="deleted",
         ),
         migrations.RemoveField(
-            model_name='seat',
-            name='deleted_by_cascade',
+            model_name="seat",
+            name="deleted_by_cascade",
         ),
         migrations.RemoveField(
-            model_name='showtime',
-            name='deleted',
+            model_name="showtime",
+            name="deleted",
         ),
         migrations.RemoveField(
-            model_name='showtime',
-            name='deleted_by_cascade',
+            model_name="showtime",
+            name="deleted_by_cascade",
         ),
         migrations.AddField(
-            model_name='booking',
-            name='is_deleted',
+            model_name="booking",
+            name="is_deleted",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='cinema',
-            name='is_deleted',
+            model_name="cinema",
+            name="is_deleted",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='cinemascreen',
-            name='is_deleted',
+            model_name="cinemascreen",
+            name="is_deleted",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='city',
-            name='is_deleted',
+            model_name="city",
+            name="is_deleted",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='movie',
-            name='is_deleted',
+            model_name="movie",
+            name="is_deleted",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='seat',
-            name='is_deleted',
+            model_name="seat",
+            name="is_deleted",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='showtime',
-            name='is_deleted',
+            model_name="showtime",
+            name="is_deleted",
             field=models.BooleanField(default=False),
         ),
     ]
