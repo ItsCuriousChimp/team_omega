@@ -12,6 +12,7 @@ class IBookingRepository(ABC):
     def get_user_id_by_auth_token(self, user_auth: str):
         raise NotImplementedError("Abstract method not implemented.")
 
+
 class BookingRepository(IBookingRepository):
     def book_seat_by_show_time_id(
         self, user_id: str, show_time_id: str, seat_id: str

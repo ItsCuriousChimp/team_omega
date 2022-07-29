@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('coreapis', '0005_alter_city_is_deleted'),
+        ("coreapis", "0005_alter_city_is_deleted"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='city',
-            name='is_deleted',
+            model_name="city",
+            name="is_deleted",
             field=models.BooleanField(default=False),
         ),
     ]

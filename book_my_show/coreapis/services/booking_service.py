@@ -74,10 +74,12 @@ class BookingService(IBookingService):
 
             self.create_booking(user_id, show_id, seat_id)
             booking_status = "Congratulations! Seat Booked."
-            self.booking_model_dto.booking_details_dto: BookingDetailsDto = BookingDetailsDto()
+            self.booking_model_dto.booking_details_dto: BookingDetailsDto = (
+                BookingDetailsDto()
+            )
             self.booking_model_dto.booking_details_dto.show_id: str = str(show_id)
             self.booking_model_dto.booking_details_dto.seat_id: str = str(seat_id)
-            
+
         else:
             booking_status = "Seat not available"
 
@@ -87,7 +89,7 @@ class BookingService(IBookingService):
         return self.booking_model_dto
 
     def get_user_id(
-        self, 
+        self,
         user_auth: str,
     ) -> UserModel:
 
