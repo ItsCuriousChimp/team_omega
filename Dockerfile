@@ -6,6 +6,8 @@ WORKDIR /team_omega
 
 COPY ./requirements.txt ./requirements.txt
 
+COPY ./entry-point.sh ./entry-point.sh
+
 RUN pip install --upgrade pip && \
     apk add --update --no-cache postgresql-client jpeg-dev && \
     apk add --update --no-cache --virtual .tmp-build-deps \
@@ -13,8 +15,6 @@ RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
 COPY . .
-
-
 
 # ENV PATH="/scripts:/py/bin:$PATH"
 
