@@ -1,15 +1,16 @@
 from django.http import HttpResponse, JsonResponse
 from book_my_show.common.enums.app_environment import AppEnvironment
 from django.conf import settings
-import logging
 
-logging.basicConfig(
-    filename="../team_omega/book_my_show/common/log/debug.log",
-    filemode="a",
-    level=logging.ERROR,
-)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.ERROR)
+# import logging
+
+# logging.basicConfig(
+#     filename="../team_omega/book_my_show/common/log/debug.log",
+#     filemode="a",
+#     level=logging.ERROR,
+# )
+# logger = logging.getLogger(__name__)
+# logger.setLevel(logging.ERROR)
 
 
 class ExceptionHandlerMiddleware:
@@ -23,7 +24,7 @@ class ExceptionHandlerMiddleware:
     def process_exception(self, request, exception) -> HttpResponse:
 
         if settings.APP_ENVIRONMENT != AppEnvironment.Local:
-            logging.error(exception)
+            # logging.error(exception)
             return JsonResponse({"Result": "Failed", "Output": "Error occured"})
 
         return HttpResponse(exception)
