@@ -16,6 +16,8 @@ RUN pip install --upgrade pip && \
 
 COPY . .
 
+RUN chmod +x entry-point.sh
+
 # ENV PATH="/scripts:/py/bin:$PATH"
 
-CMD [ "python","manage.py","runserver", "0.0.0.0:8000" ]
+CMD [ "./entry-point.sh" ]
