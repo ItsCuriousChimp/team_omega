@@ -2,6 +2,11 @@ from datetime import datetime
 from django.db import connection
 from abc import ABC, abstractmethod
 from book_my_show.coreapis.dtos.cinema_dto import CinemaDto
+from book_my_show.coreapis.models.cinema_model import Cinema
+from book_my_show.coreapis.models.showtime_model import Showtime
+from book_my_show.coreapis.serialisers.cinema_serialiser import (
+    ShowtimeSerialiser,
+)
 
 
 class ICinemaRepository(ABC):
@@ -12,6 +17,10 @@ class ICinemaRepository(ABC):
 
 class CinemaRepository(ICinemaRepository):
     def get_cinemas_by_movie_id(self, movie_id: str) -> dict[list[CinemaDto]]:
+        test1 = Showtime.objects.filter(movie_id=movie_id)
+        d = ShowtimeSerialiser(test1, many=True).data
+        print(d)
+
         cursor = connection.cursor()
         cursor.execute(
             """Select s.id as showtime_id, s.start_time_at_utc, s.end_time_at_utc, 
@@ -43,7 +52,8 @@ class CinemaRepository(ICinemaRepository):
 
         return groupby_cinema
 
-    def get_cinema_dtos_list(self, cursor) -> CinemaDto:
+    def get_cinema_dtos_list(self, cursor) -> list[CinemaDto]:
+
         columns = [col[0] for col in cursor.description]
         list_cinema = []
 

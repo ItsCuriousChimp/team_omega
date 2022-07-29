@@ -1,12 +1,15 @@
+from datetime import datetime
+
+
 class CinemaDto:
     def __init__(
         self,
-        showtime_id,
-        start_time_at_utc,
-        end_time_at_utc,
-        movie_name,
-        cinema_name,
-        cinema_id,
+        showtime_id: str,
+        start_time_at_utc: datetime,
+        end_time_at_utc: datetime,
+        movie_name: str,
+        cinema_name: str,
+        cinema_id: str,
     ) -> None:
         self.showtime_id = showtime_id
         self.start_time_at_utc = start_time_at_utc

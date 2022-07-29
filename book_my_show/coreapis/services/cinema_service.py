@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from book_my_show.coreapis.dtos.cinema_dto import CinemaDto
 from book_my_show.coreapis.repositories.cinema_repository import ICinemaRepository
 from dependency_injector.wiring import Provide
 from book_my_show.containers.repo_container import RepositoryContainer
@@ -6,7 +7,7 @@ from book_my_show.containers.repo_container import RepositoryContainer
 
 class ICinemaService(ABC):
     @abstractmethod
-    def get_cinema(self):
+    def get_cinemas(self):
         raise NotImplementedError("Abstract method not implemented.")
 
 
@@ -22,7 +23,7 @@ class CinemaService(ICinemaService):
     def get_cinemas(
         self,
         movie_id: str,
-    ) -> dict:
+    ) -> dict[list[CinemaDto]]:
         allcinemas_playing_movies: dict = (
             self.cinema_repository.get_cinemas_by_movie_id(movie_id)
         )

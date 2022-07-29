@@ -16,4 +16,6 @@ COPY . .
 
 
 
+# ENV PATH="/scripts:/py/bin:$PATH"
+
 CMD [ "./entry-point.sh" ]

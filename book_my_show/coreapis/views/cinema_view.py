@@ -1,5 +1,4 @@
 from django.http import JsonResponse
-from requests import Response
 from rest_framework.views import APIView
 from book_my_show.containers.service_container import ServiceContainer
 from dependency_injector.wiring import Provide
@@ -21,7 +20,9 @@ class CinemaView(APIView):
         id: str,
     ) -> JsonResponse:
         movie_id = id
-        allcinemas_playing_movies = self.cinema_service.get_cinemas(movie_id)
+        allcinemas_playing_movies: dict[
+            list[CinemaDto]
+        ] = self.cinema_service.get_cinemas(movie_id)
 
         dict_response = self.DictResponse(allcinemas_playing_movies)
 
