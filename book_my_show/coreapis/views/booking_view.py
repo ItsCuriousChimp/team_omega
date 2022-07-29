@@ -31,11 +31,11 @@ class BookingView(APIView):
             show_id, seat_id, authtoken
         )
         response_dict: dict = {}
-        if(booking_status_dto.booking_details_dto):
+        if booking_status_dto.booking_details_dto:
             response_dict["Booking Details"] = {
-                    "Show_id": booking_status_dto.booking_details_dto.show_id,
-                    "Seat_Id": booking_status_dto.booking_details_dto.seat_id,
-                }
+                "Show_id": booking_status_dto.booking_details_dto.show_id,
+                "Seat_Id": booking_status_dto.booking_details_dto.seat_id,
+            }
         response_dict["Status"] = booking_status_dto.booking_status
         response_dict["User_Details"] = booking_status_dto.user_details
         return JsonResponse(response_dict)
