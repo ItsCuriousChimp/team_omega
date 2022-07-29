@@ -91,3 +91,81 @@ with base endpoint as
 # http://127.0.0.1:8000/
 
 you can create different endpoint in the projects starting with this as base URL.
+
+# Authentication
+Authentication is the mechanism of associating an incoming request with a set of identifying credentials, such as the user the request came from, or the token that it was signed with. The permission and throttling policies can then use those credentials to determine if the request should be permitted.
+
+## Token Authentication:
+### Setting the authentication scheme :
+First we need to add authentication framework class in the ``` settings.py ``` file.
+```
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+```
+Add TokenAuthentication in installed app :
+```
+INSTALLED_APPS = [
+    ...
+    'rest_framework.authtoken'
+]
+```
+# Generating Token:
+If you want every user to have an automatically generated Token, you can simply catch the User's post_save signal.
+
+```
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
+```
+Token is return in reposnse when we register a user.
+
+# Getting the Token :
+In oreder to get the token corresponds to particular Username and Password, TokenAuthentication provides inbuilt API in which we need to provide the username and password which in response returns the Token for that particular User.
+
+For that we need to add path in ```urls.py``` as 
+
+```
+from rest_framework.authtoken import views
+urlpatterns += [
+    path('api-token-auth/', views.obtain_auth_token)
+]
+```
+Then our endpoint would look like
+```
+http://localhost:8000/api-token-auth/
+```
+in which we pass username and password as parameters and in response we get Token for that particular user.
+# Authenticating the Token
+
+For clients to authenticate, the token key should be included in the Authorization HTTP header. The key should be prefixed by the string literal "Token", with whitespace separating the two strings. For example:
+```
+Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b
+```
+We also need to add authentication classes in the views where authentication is necessary to access the API. Like given bellow for 
+``` booking_view.py ``` which is an view of API to book ticket for a show.
+```
+from rest_framework.views import APIView
+# Need to be imported to check authentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
+
+class BookingView(APIView):
+   authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def __init__(
+        self,
+        booking_service: IBookingService = Provide[ServiceContainer.booking_service],
+    ) -> None:
+       # Implemented in the '''booking_view.py'''
+
+```
