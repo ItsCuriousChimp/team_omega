@@ -11,6 +11,9 @@ from django.conf import settings
 # )
 # logger = logging.getLogger(__name__)
 # logger.setLevel(logging.ERROR)
+import logging
+
+logger = logging.getLogger("watchtower-logger")
 
 
 class ExceptionHandlerMiddleware:
@@ -24,7 +27,7 @@ class ExceptionHandlerMiddleware:
     def process_exception(self, request, exception) -> HttpResponse:
 
         if settings.APP_ENVIRONMENT != AppEnvironment.Local:
-            # logging.error(exception)
+            logger.error(exception)
             return JsonResponse({"Result": "Failed", "Output": "Error occured"})
 
         return HttpResponse(exception)
