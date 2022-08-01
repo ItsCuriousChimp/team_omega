@@ -14,15 +14,9 @@ class Settings(Configuration):
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
     AWS_REGION_NAME = os.environ.get("AWS_REGION_NAME")
     AWS_LOG_GROUP = "BMKLogGroup"
-    AWS_LOG_STREAM = "BMKMystream"
+    AWS_LOG_STREAM = "BMKstream"
     AWS_LOGGER_NAME = "bmk-watchtower-logger"
 
-    # logger
-    # boto3_session = Session(
-    #     aws_access_key_id=AWS_ACCESS_KEY_ID,
-    #     aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-    #     region_name=AWS_REGION_NAME,
-    # )
     boto3_logs_client = boto3.client("logs", region_name=AWS_REGION_NAME)
 
     BASE_DIR = Path(__file__).resolve().parent.parent
