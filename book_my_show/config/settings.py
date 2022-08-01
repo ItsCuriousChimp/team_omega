@@ -3,7 +3,9 @@ from configurations import Configuration
 from book_my_show.common.enums.app_environment import AppEnvironment
 import os
 import logging
-import boto3
+
+# import boto3
+from boto3.session import Session
 
 # from boto3.session import Session
 
@@ -18,7 +20,12 @@ class Settings(Configuration):
 
     AWS_LOGGER_NAME = "bmk-watchtower-logger"
 
-    boto3_logs_client = boto3.client("logs", region_name=AWS_REGION_NAME)
+    # boto3_logs_client = boto3.client("logs", region_name=AWS_REGION_NAME)
+    boto3_session = Session(
+        aws_access_key_id=AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+        region_name=AWS_REGION_NAME,
+    )
 
     BASE_DIR = Path(__file__).resolve().parent.parent
     STATIC_ROOT = os.path.join(BASE_DIR, "static/")
