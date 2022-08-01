@@ -3,7 +3,9 @@ from configurations import Configuration
 from book_my_show.common.enums.app_environment import AppEnvironment
 import os
 import logging
-from boto3.session import Session
+import boto3
+
+# from boto3.session import Session
 
 
 class Settings(Configuration):
@@ -16,11 +18,12 @@ class Settings(Configuration):
     AWS_LOGGER_NAME = "bmk-watchtower-logger"
 
     # logger
-    boto3_session = Session(
-        aws_access_key_id=AWS_ACCESS_KEY_ID,
-        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-        region_name=AWS_REGION_NAME,
-    )
+    # boto3_session = Session(
+    #     aws_access_key_id=AWS_ACCESS_KEY_ID,
+    #     aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+    #     region_name=AWS_REGION_NAME,
+    # )
+    boto3_logs_client = boto3.client("logs", region_name=AWS_REGION_NAME)
 
     BASE_DIR = Path(__file__).resolve().parent.parent
     STATIC_ROOT = os.path.join(BASE_DIR, "static/")
@@ -77,33 +80,28 @@ class Settings(Configuration):
             },
         },
     ]
+
     LOGGING = {
         "version": 1,
         "disable_existing_loggers": False,
-        "formatters": {
-            "aws": {
-                "format": "%(asctime)s [%(levelname)-8s] %(message)s [%(pathname)s:%(lineno)d]",
-                "datefmt": "%Y-%m-%d %H:%M:%S",
-            },
-        },
         "handlers": {
             "watchtower": {
                 "level": "DEBUG",
                 "class": "watchtower.CloudWatchLogHandler",
-                "boto3_session": boto3_session,
+                "boto3_client": boto3_logs_client,
                 "log_group": AWS_LOG_GROUP,
                 "stream_name": AWS_LOG_STREAM,
-                "formatter": "aws",
-            },
+            }
         },
         "loggers": {
             AWS_LOGGER_NAME: {
                 "level": "DEBUG",
                 "handlers": ["watchtower"],
                 "propagate": False,
-            },
+            }
         },
     }
+
     WSGI_APPLICATION = "book_my_show.wsgi.application"
 
     DATABASES = {
@@ -146,24 +144,3 @@ class Settings(Configuration):
 
     APP_ENVIRONMENT: AppEnvironment = None
     AUTH_USER_MODEL = "authenticate.UserModel"
-
-    LOGGING = {
-        "version": 1,
-        "disable_existing_loggers": False,
-        "handlers": {
-            "watchtower": {
-                "level": "DEBUG",
-                "class": "watchtower.CloudWatchLogHandler",
-                "boto3_session": boto3_session,
-                "log_group": AWS_LOG_GROUP,
-                "stream_name": AWS_LOG_STREAM,
-            }
-        },
-        "loggers": {
-            AWS_LOGGER_NAME: {
-                "level": "DEBUG",
-                "handlers": ["watchtower"],
-                "propagate": False,
-            }
-        },
-    }
