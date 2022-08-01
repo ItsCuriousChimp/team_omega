@@ -3,13 +3,11 @@ from book_my_show.common.enums.app_environment import AppEnvironment
 from django.conf import settings
 import logging
 
-logger = logging.getLogger("bmk-watchtower-logger")
 # logging.basicConfig(
-#     filename="../team_omega/book_my_show/common/log/debug.log",
-#     filemode="a",
-#     level=logging.ERROR,
+# level=logging.INFO,
 # )
-# logger.setLevel(logging.ERROR)
+logger = logging.getLogger("bmk-watchtower-logger")
+# logger.addHandler(watchtower.CloudWatchLogHandler())
 
 
 class ExceptionHandlerMiddleware:

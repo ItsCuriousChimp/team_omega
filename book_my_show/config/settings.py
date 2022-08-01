@@ -7,8 +7,6 @@ import logging
 # import boto3
 import boto3
 
-# from boto3.session import Session
-
 
 class Settings(Configuration):
 
