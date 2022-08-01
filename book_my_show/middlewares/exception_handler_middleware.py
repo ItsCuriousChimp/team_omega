@@ -15,11 +15,12 @@ class ExceptionHandlerMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
+        # logger.error("error occ")
         response = self.get_response(request)
         return response
 
     def process_exception(self, request, exception) -> HttpResponse:
-
+        logger.error(exception)
         if settings.APP_ENVIRONMENT != AppEnvironment.Local:
             logging.error(exception)
             return JsonResponse({"Result": "Failed", "Output": "Error occured"})

@@ -13,6 +13,7 @@ class Settings(Configuration):
     AWS_REGION_NAME = os.environ.get("AWS_REGION_NAME")
     AWS_LOG_GROUP = "BMKLogGroup"
     AWS_LOG_STREAM = "BMKstream"
+
     AWS_LOGGER_NAME = "bmk-watchtower-logger"
 
     # boto3_logs_client = boto3.client("logs", region_name=AWS_REGION_NAME)
