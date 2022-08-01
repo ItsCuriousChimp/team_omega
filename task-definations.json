@@ -53,6 +53,18 @@
         {
           "name": "SECRET_KEY",
           "value": "django-insecure-=g7p*++&z$tv*^6a@9^v1fm)4+-+xe5pjc&#yo6e3qpo1&36o4"
+        },
+        {
+          "name": "AWS_ACCESS_KEY_ID",
+          "value": "AKIAZKRR5PF6UVG66PH6"
+        },
+        {
+          "name": "AWS_SECRET_ACCESS_KEY",
+          "value": "70XKPPodi3klXV4Vg8skYnHNNo9g3fGXuLVG4NU"
+        },
+        {
+          "name": "AWS_REGION_NAME",
+          "value": "us-east-1"
         }
       ],
       "resourceRequirements": null,

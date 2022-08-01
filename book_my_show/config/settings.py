@@ -2,13 +2,18 @@ from pathlib import Path
 from configurations import Configuration
 from book_my_show.common.enums.app_environment import AppEnvironment
 import os
-from boto3.session import Session
+import logging
+import boto3
+
+# from boto3.session import Session
 
 
 class Settings(Configuration):
+
     AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
     AWS_REGION_NAME = os.environ.get("AWS_REGION_NAME")
+<<<<<<< HEAD
     AWS_LOG_GROUP = "MyLogGroup"  # your log group
     AWS_LOG_STREAM = "Mystream"  # your stream
     AWS_LOGGER_NAME = "watchtower-logger"  # your logger
@@ -17,6 +22,13 @@ class Settings(Configuration):
         aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
         region_name=AWS_REGION_NAME,
     )
+=======
+    AWS_LOG_GROUP = "BMKLogGroup"
+    AWS_LOG_STREAM = "BMKstream"
+    AWS_LOGGER_NAME = "bmk-watchtower-logger"
+
+    boto3_logs_client = boto3.client("logs", region_name=AWS_REGION_NAME)
+>>>>>>> d3f2900500d5d07a3eb3ff893d891e5702113f4c
 
     BASE_DIR = Path(__file__).resolve().parent.parent
     STATIC_ROOT = os.path.join(BASE_DIR, "static/")
@@ -73,6 +85,7 @@ class Settings(Configuration):
             },
         },
     ]
+
     LOGGING = {
         "version": 1,
         "disable_existing_loggers": False,
@@ -80,19 +93,24 @@ class Settings(Configuration):
             "watchtower": {
                 "level": "DEBUG",
                 "class": "watchtower.CloudWatchLogHandler",
-                "boto3_session": boto3_session,
+                "boto3_client": boto3_logs_client,
                 "log_group": AWS_LOG_GROUP,
                 "stream_name": AWS_LOG_STREAM,
+<<<<<<< HEAD
             },
+=======
+            }
+>>>>>>> d3f2900500d5d07a3eb3ff893d891e5702113f4c
         },
         "loggers": {
             AWS_LOGGER_NAME: {
                 "level": "DEBUG",
                 "handlers": ["watchtower"],
                 "propagate": False,
-            },
+            }
         },
     }
+
     WSGI_APPLICATION = "book_my_show.wsgi.application"
 
     DATABASES = {
