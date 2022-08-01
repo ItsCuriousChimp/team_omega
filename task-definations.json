@@ -9,9 +9,9 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/bmk_task",
+          "awslogs-group": "BMKLogGroup",
           "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "ecs"
+          "awslogs-stream-prefix": "BMKstream"
         }
       },
       "entryPoint": null,
