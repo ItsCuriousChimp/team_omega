@@ -18,6 +18,5 @@ COPY . .
 
 RUN chmod +x entry-point.sh
 
-# ENV PATH="/scripts:/py/bin:$PATH"
 
 CMD [ "./entry-point.sh" ]

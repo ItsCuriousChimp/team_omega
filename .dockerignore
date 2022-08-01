@@ -24,5 +24,6 @@ src/node_modules
 web/media
 web/static/CACHE
 stats
+*.log
 Dockerfile
 .env
