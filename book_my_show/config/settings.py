@@ -90,7 +90,6 @@ class Settings(Configuration):
             "watchtower": {
                 "level": "DEBUG",
                 "class": "watchtower.CloudWatchLogHandler",
-                "boto3_session": boto3_session,
                 "log_group": AWS_LOG_GROUP,
                 "stream_name": AWS_LOG_STREAM,
             }
