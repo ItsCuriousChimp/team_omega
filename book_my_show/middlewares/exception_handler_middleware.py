@@ -3,11 +3,7 @@ from book_my_show.common.enums.app_environment import AppEnvironment
 from django.conf import settings
 import logging
 
-# logging.basicConfig(
-# level=logging.INFO,
-# )
 logger = logging.getLogger("bmk-watchtower-logger")
-# logger.addHandler(watchtower.CloudWatchLogHandler())
 
 
 class ExceptionHandlerMiddleware:
@@ -20,7 +16,7 @@ class ExceptionHandlerMiddleware:
         return response
 
     def process_exception(self, request, exception) -> HttpResponse:
-        logger.error(exception)
+
         if settings.APP_ENVIRONMENT != AppEnvironment.Local:
             logging.error(exception)
             return JsonResponse({"Result": "Failed", "Output": "Error occured"})
