@@ -8,3 +8,7 @@ pre-commit==2.19.0
 black==22.6.0
 django-configurations==2.3.2
 python-dotenv==0.20.0
+django-safedelete==1.2.2
+psycopg2==2.9.3
+dependency-injector==4.39.1
+watchtower==3.0.0

@@ -4,7 +4,6 @@ from book_my_show.heartbeat.repositories.heartbeat_repository import HeartbeatRe
 
 class HeartbeatService:
     def get_heartbeat(self) -> HeartbeatDto:
-
         heartbeat_repository = HeartbeatRepository()
         heartbeat = heartbeat_repository.get_heartbeat()
         return heartbeat

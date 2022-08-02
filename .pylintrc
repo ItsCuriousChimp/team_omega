@@ -160,13 +160,31 @@ disable=raw-checker-failed,
         trailing-whitespace,
         unnecessary-dunder-call,
         relative-beyond-top-level,
-        import-outside-toplevel
+        import-outside-toplevel,
+        invalid-name,
+        import-error,
+        wrong-import-order,
+        unused-argument,
+        ungrouped-imports,
+        bare-except,
+        invalid-str-returned,
+        too-many-arguments,
+        unused-import,
+        broad-except,
+        redefined-builtin,
+        no-member,
+        unused-variable,
+        c-extension-no-member,
+        wrong-import-position,
+        arguments-differ,
+        super-init-not-called,
+        unsubscriptable-object
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
 # multiple time (only on the command line, not in the configuration file where
 # it should appear only once). See also the "--disable" option for examples.
-enable=c-extension-no-member
+enable=
 
 
 [BASIC]

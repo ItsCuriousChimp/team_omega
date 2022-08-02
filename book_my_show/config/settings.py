@@ -1,26 +1,30 @@
-from configurations import Configuration
 from pathlib import Path
+from configurations import Configuration
+from book_my_show.common.enums.app_environment import AppEnvironment
+import os
+import boto3
+
 
 class Settings(Configuration):
 
+    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_REGION_NAME = os.environ.get("AWS_REGION_NAME")
+    AWS_LOG_GROUP = "BMKLogGroup"
+    AWS_LOG_STREAM = "BMKstream"
+    AWS_LOGGER_NAME = "bmk-watchtower-logger"
 
-    # Build paths inside the project like this: BASE_DIR / 'subdir'.
+    boto3_logs_client = boto3.client("logs", region_name=AWS_REGION_NAME)
+
     BASE_DIR = Path(__file__).resolve().parent.parent
+    STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
+    SECRET_KEY = os.environ.get("SECRET_KEY")
 
-    # Quick-start development settings - unsuitable for production
-    # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
-    # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = "django-insecure-=g7p*++&z$tv*^6a@9^v1fm)4+-+xe5pjc&#yo6e3qpo1&36o4"
-
-    # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = False
 
-    ALLOWED_HOSTS = ['*']
+    ALLOWED_HOSTS = ["*"]
 
-
-    # Application definition
     INSTALLED_APPS = [
         "django.contrib.admin",
         "django.contrib.auth",
@@ -28,7 +32,12 @@ class Settings(Configuration):
         "django.contrib.sessions",
         "django.contrib.messages",
         "django.contrib.staticfiles",
+        "rest_framework",
         "book_my_show.heartbeat",
+        "book_my_show.authenticate",
+        "book_my_show.coreapis",
+        "rest_framework.authtoken",
+        "safedelete",
     ]
 
     MIDDLEWARE = [
@@ -39,9 +48,13 @@ class Settings(Configuration):
         "django.contrib.auth.middleware.AuthenticationMiddleware",
         "django.contrib.messages.middleware.MessageMiddleware",
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
+        "book_my_show.middlewares.exception_handler_middleware.ExceptionHandlerMiddleware",
     ]
 
     ROOT_URLCONF = "book_my_show.urls"
+    ACCOUNT_AUTHENTICATION_METHOD = "email"
+    ACCOUNT_EMAIL_REQUIRED = True
+    ACCOUNT_USERNAME_REQUIRED = False
 
     TEMPLATES = [
         {
@@ -61,20 +74,16 @@ class Settings(Configuration):
 
     WSGI_APPLICATION = "book_my_show.wsgi.application"
 
-
-    # Database
-    # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "NAME": os.environ.get("DB_NAME"),
+            "USER": os.environ.get("DB_USER"),
+            "PASSWORD": os.environ.get("DB_PASSWORD"),
+            "HOST": os.environ.get("DB_HOST"),
+            "PORT": os.environ.get("DB_PORT"),
         }
     }
-
-
-    # Password validation
-    # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
     AUTH_PASSWORD_VALIDATORS = [
         {
@@ -91,10 +100,6 @@ class Settings(Configuration):
         },
     ]
 
-
-    # Internationalization
-    # https://docs.djangoproject.com/en/4.0/topics/i18n/
-
     LANGUAGE_CODE = "en-us"
 
     TIME_ZONE = "UTC"
@@ -103,13 +108,30 @@ class Settings(Configuration):
 
     USE_TZ = True
 
-
-    # Static files (CSS, JavaScript, Images)
-    # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
     STATIC_URL = "static/"
 
-    # Default primary key field type
-    # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-
     DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+    APP_ENVIRONMENT: AppEnvironment = None
+    AUTH_USER_MODEL = "authenticate.UserModel"
+
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "handlers": {
+            "watchtower": {
+                "level": "DEBUG",
+                "class": "watchtower.CloudWatchLogHandler",
+                "boto3_client": boto3_logs_client,
+                "log_group": AWS_LOG_GROUP,
+                "stream_name": AWS_LOG_STREAM,
+            },
+        },
+        "loggers": {
+            AWS_LOGGER_NAME: {
+                "level": "DEBUG",
+                "handlers": ["watchtower"],
+                "propagate": True,
+            },
+        },
+    }
