@@ -1,5 +1,7 @@
 FROM python:3.10.5-alpine3.16
 
+EXPOSE 8000
+
 ENV PYTHONUNBUFFERED 1
 
 WORKDIR /team_omega
