@@ -81,27 +81,6 @@ class Settings(Configuration):
         },
     ]
 
-    LOGGING = {
-        "version": 1,
-        "disable_existing_loggers": False,
-        "handlers": {
-            "watchtower": {
-                "level": "DEBUG",
-                "class": "watchtower.CloudWatchLogHandler",
-                "boto3_client": boto3_logs_client,
-                "log_group": AWS_LOG_GROUP,
-                "stream_name": AWS_LOG_STREAM,
-            }
-        },
-        "loggers": {
-            AWS_LOGGER_NAME: {
-                "level": "DEBUG",
-                "handlers": ["watchtower"],
-                "propagate": False,
-            }
-        },
-    }
-
     WSGI_APPLICATION = "book_my_show.wsgi.application"
 
     DATABASES = {
@@ -148,14 +127,7 @@ class Settings(Configuration):
     LOGGING = {
         "version": 1,
         "disable_existing_loggers": False,
-        "root": {
-            "level": "DEBUG",
-            "handlers": ["watchtower", "console"],
-        },
         "handlers": {
-            "console": {
-                "class": "logging.StreamHandler",
-            },
             "watchtower": {
                 "level": "DEBUG",
                 "class": "watchtower.CloudWatchLogHandler",
